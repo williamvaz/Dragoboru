@@ -2,10 +2,10 @@ const cacheName = 'db-fighters-cache-v1';
 const filesToCache = [
   '/',
   '/index.html',
-  '/css/index.css',
-  '/js/index.js',
+  '/CSS/index.css',
+  '/index.js',
   '/Logo.png',
-  '/manifest.json'
+  '/JSON/manifest.json'
   // ➕ Adicione outros arquivos que queira deixar offline
 ];
 
