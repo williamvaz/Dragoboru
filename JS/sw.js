@@ -3,7 +3,7 @@ const filesToCache = [
   '/',
   '/index.html',
   '/CSS/index.css',
-  '/index.js',
+  '/JS/index.js',
   '/Logo.png',
   '/JSON/manifest.json'
   // ➕ Adicione outros arquivos que queira deixar offline
