@@ -1,0 +1,21 @@
+{
+  "name": "DB Fighters",
+  "short_name": "DB Fighters",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#fbbc04",
+  "description": "Jogo de Pacotes e Cartas - Dragon Ball Fighters",
+  "icons": [
+    {
+      "src": "Logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
