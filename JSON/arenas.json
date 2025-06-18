@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "nome": "Budokai Tenkaichi",
+        "trofeusMin": 0,
+        "trofeusMax": 500,
+        "imagem": "1.png"
+    },
+    {
+        "id": 2,
+        "nome": "Torre Musculo",
+        "trofeusMin": 501,
+        "trofeusMax": 1000,
+        "imagem": "2.png"
+    },
+    {
+        "id": 3,
+        "nome": "Torre de Karin",
+        "trofeusMin": 1001,
+        "trofeusMax": 1500,
+        "imagem": "3.png"
+    },
+    {
+        "id": 4,
+        "nome": "Ilha do Kame",
+        "trofeusMin": 1501,
+        "trofeusMax": 2000,
+        "imagem": "4.png"
+    },
+    {
+        "id": 5,
+        "nome": "Vila Pinguim",
+        "trofeusMin": 2001,
+        "trofeusMax": 2500,
+        "imagem": "5.png"
+    },
+    {
+        "id": 6,
+        "nome": "Plataforma Celeste",
+        "trofeusMin": 2501,
+        "trofeusMax": 3000,
+        "imagem": "6.png"
+    },
+    {
+        "id": 7,
+        "nome": "Sala do Tempo",
+        "trofeusMin": 3001,
+        "trofeusMax": 3500,
+        "imagem": "7.png"
+    },
+    {
+        "id": 8,
+        "nome": "Namekusei",
+        "trofeusMin": 3501,
+        "trofeusMax": 4000,
+        "imagem": "8.png"
+    },
+    {
+        "id": 9,
+        "nome": "Arena Cell",
+        "trofeusMin": 4001,
+        "trofeusMax": 4500,
+        "imagem": "9.png"
+    },
+    {
+        "id": 10,
+        "nome": "Monte Paozu",
+        "trofeusMin": 4501,
+        "trofeusMax": 5000,
+        "imagem": "10.png"
+    },
+    {
+        "id": 11,
+        "nome": "Planeta M2",
+        "trofeusMin": 5001,
+        "trofeusMax": 5500,
+        "imagem": "11.png"
+    },
+    {
+        "id": 12,
+        "nome": "Planeta Kaio",
+        "trofeusMin": 5501,
+        "trofeusMax": 6000,
+        "imagem": "12.png"
+    },
+    {
+        "id": 13,
+        "nome": "Planeta Supremo",
+        "trofeusMin": 6001,
+        "trofeusMax": 6500,
+        "imagem": "13.png"
+    },
+    {
+        "id": 14,
+        "nome": "Planeta Bills",
+        "trofeusMin": 6501,
+        "trofeusMax": 7000,
+        "imagem": "14.png"
+    },
+    {
+        "id": 15,
+        "nome": "Futuro de Trunks",
+        "trofeusMin": 7001,
+        "trofeusMax": 7500,
+        "imagem": "15.png"
+    },
+    {
+        "id": 16,
+        "nome": "Inferno",
+        "trofeusMin": 7501,
+        "trofeusMax": 8000,
+        "imagem": "16.png"
+    },
+    {
+        "id": 17,
+        "nome": "Mundo dos Demonios",
+        "trofeusMin": 8001,
+        "trofeusMax": 8500,
+        "imagem": "17.png"
+    },
+    {
+        "id": 18,
+        "nome": "Torneio do Poder",
+        "trofeusMin": 8501,
+        "trofeusMax": 9000,
+        "imagem": "18.png"
+    },
+    {
+        "id": 19,
+        "nome": "Planeta Prisão",
+        "trofeusMin": 9001,
+        "trofeusMax": 9500,
+        "imagem": "19.png"
+    },
+    {
+        "id": 20,
+        "nome": "Mansão do Zeno Sama",
+        "trofeusMin": 9501,
+        "trofeusMax": 9999999999,
+        "imagem": "20.png"
+    }
+]

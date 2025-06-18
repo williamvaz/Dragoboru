@@ -1,0 +1,52 @@
+[
+    {
+        "Nivel": 1,
+        "XP": 0,
+        "HP Planetas": 1000
+    },
+    {
+        "Nivel": 2,
+        "XP": 20,
+        "HP Planetas": 1100
+    },
+    {
+        "Nivel": 3,
+        "XP": 50,
+        "HP Planetas": 1200
+    },
+    {
+        "Nivel": 4,
+        "XP": 100,
+        "HP Planetas": 1300
+    },
+    {
+        "Nivel": 5,
+        "XP": 200,
+        "HP Planetas": 1400
+    },
+    {
+        "Nivel": 6,
+        "XP": 500,
+        "HP Planetas": 1500
+    },
+    {
+        "Nivel": 7,
+        "XP": 1000,
+        "HP Planetas": 1600
+    },
+    {
+        "Nivel": 8,
+        "XP": 2000,
+        "HP Planetas": 1700
+    },
+    {
+        "Nivel": 9,
+        "XP": 5000,
+        "HP Planetas": 1800
+    },
+    {
+        "Nivel": 10,
+        "XP": 10000,
+        "HP Planetas": 2000
+    }
+]

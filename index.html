@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DB Fighters - Menu</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- TOPO -->
+        <div class="top-bar">
+            <div class="resources">
+
+                <!-- XP -->
+                <div class="xp-container">
+                    <div class="xp-icon">
+                        <img src="assets/xp.png" alt="XP">
+                        <div class="xp-level">10</div>
+                    </div>
+                    <div class="xp-bar">
+                        <div class="xp-bar-fill"></div>
+                        <div class="xp-bar-text">33/400</div>
+                    </div>
+                </div>
+
+                <!-- Moeda -->
+                <div class="resource-bar">
+                    <img src="assets/coin.png" class="icon" alt="Moeda">
+                    <div class="bar"><span id="coin-amount">0</span></div>
+                </div>
+
+                <!-- Gemas -->
+                <div class="resource-bar">
+                    <img src="assets/gem.png" class="icon" alt="Gemas">
+                    <div class="bar"><span id="gem-amount">0</span></div>
+                </div>
+
+                <!-- Troféus -->
+                <div class="resource-bar">
+                    <img src="assets/trophy.png" class="icon" alt="Troféus">
+                    <div class="bar"><span id="trophy-amount">0</span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PACOTES RÁPIDOS -->
+        <div class="quick-packs">
+
+            <!-- Pacote Grátis -->
+            <div class="pack" id="pack-gratis" onclick="abrirPacoteGratis()">
+                <img src="Packs/1.png" class="pack-img" alt="Pacote Grátis">
+                <div class="pack-content">
+                    <div class="pack-info" id="timer-gratis">
+                        Pacote de suprimentos disponível em: 00:00:00
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pacote Conquista -->
+            <div class="pack" id="pack-conquista" onclick="abrirPacoteConquista()">
+                <img src="Packs/0.png" class="pack-img" alt="Pacote Conquista">
+                <div class="pack-content">
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-planets"></div>
+                    </div>
+                    <div class="pack-info" id="planet-count">
+                        0 / 10 Planetas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARENA -->
+        <div class="arena-display" onclick="goTo('arenas.html')">
+            <div class="arena-label" id="arena-level">Arena 1</div>
+            <img id="arena-image" src="" alt="Arena Atual">
+            <div class="arena-name" id="arena-name">Budokai Tenkaichi</div>
+        </div>
+
+        <!-- BOTÃO DE BATALHA -->
+        <div class="battle-button-container">
+            <button class="battle-button" onclick="goTo('battle.html')">
+                BATALHAR
+            </button>
+        </div>
+
+        <!-- SLOTS DE PACOTES -->
+        <div class="battle-packs">
+            <div class="slot" id="slot1"></div>
+            <div class="slot" id="slot2"></div>
+            <div class="slot" id="slot3"></div>
+            <div class="slot" id="slot4"></div>
+        </div>
+
+        <!-- POPUP CONFIRMAÇÃO -->
+        <div id="popup-confirm" class="popup">
+            <div class="popup-content">
+                <p id="popup-message"></p>
+                <div class="popup-buttons">
+                    <button onclick="confirmarPopup()">Sim</button>
+                    <button onclick="fecharPopup()">Não</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POPUP AVISO -->
+        <div id="popup-aviso" class="popup">
+            <div class="popup-content">
+                <p id="popup-aviso-message"></p>
+                <div class="popup-buttons">
+                    <button onclick="fecharPopupAviso()">Ok</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔥 TELA DE ABERTURA DE PACOTES -->
+        <div id="opening-screen" class="opening">
+            <div class="pack-container">
+                <img id="pack-img" src="" alt="Pacote">
+                <div id="card-flip-container" class="card-flip-container"></div>
+                <div id="grid-container" class="grid-container"></div>
+                <button id="btn-continuar" class="btn-continuar" onclick="fecharAbertura()">Continuar</button>
+            </div>
+        </div>
+
+        <!-- BARRA INFERIOR -->
+        <div class="bottom-bar">
+            <button onclick="goTo('shop.html')">
+                <img src="assets/Loja.png" alt="Loja">
+            </button>
+            <button onclick="goTo('cards.html')">
+                <img src="assets/Colecao.png" alt="Coleção">
+            </button>
+            <button class="battle-btn">
+                <img src="assets/Batalha.png" alt="Batalha">
+            </button>
+            <button onclick="goTo('shenlong.html')">
+                <img src="assets/Shenlong.png" alt="Shenlong">
+            </button>
+            <button onclick="goTo('events.html')">
+                <img src="assets/Torneio.png" alt="Torneio">
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 🔥 Coloque sempre o JS no final -->
+    <script src="js/index.js"></script>
+</body>
+</html>
