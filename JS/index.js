@@ -14,6 +14,12 @@ for (let i = 1; i <= 4; i++) {
     }
 }
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('✔️ Service Worker registrado com sucesso!'))
+    .catch(error => console.log('❌ Falha ao registrar Service Worker:', error));
+}
+
 // ================== ELEMENTOS DA ABERTURA ==================
 
 let packImg, flipContainer, gridContainer = null;
