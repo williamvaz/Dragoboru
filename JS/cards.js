@@ -118,17 +118,10 @@ function gerarCards() {
         const img = document.createElement('img');
         img.src = `Cards/Slide${carta["nº"]}.PNG`;
 
-        // 🔥 Borda de raridade
         const borda = document.createElement('div');
         borda.className = 'rarity-border';
+        borda.style.borderColor = corPorRaridade(carta.Raridade);
 
-        if (corPorRaridade(carta.Raridade) === 'gradient') {
-            borda.classList.add('rainbow-border');
-        } else {
-            borda.style.borderColor = corPorRaridade(carta.Raridade);
-        }
-
-        // 🔥 Montagem do card
         card.appendChild(img);
         card.appendChild(borda);
 
@@ -151,7 +144,8 @@ function corPorRaridade(r) {
         case 'Raro': return '#2196F3'; // Azul
         case 'Super Raro': return '#FF3300'; // Vermelho
         case 'Ultra Raro': return '#FFD700'; // Dourado
-       case 'Lendario': return '#FF00FF'; // Rosa
+        case 'Lendario': return '#FF00FF'; // Rosa (agora definitivo)
+        default: return 'white';
     }
 }
 
