@@ -129,11 +129,11 @@ function gerarCards() {
 
 function corPorRaridade(r) {
     switch (r) {
-        case 'Normal': return 'gray';
-        case 'Raro': return 'green';
-        case 'Super Raro': return 'gold';
-        case 'Ultra Raro': return 'purple';
-        case 'Lendario': return 'linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet)';
+        case 'Normal': return '#9E9E9E'; // Cinza
+        case 'Raro': return '#2196F3'; // Azul
+        case 'Super Raro': return '#9C27B0'; // Roxo
+        case 'Ultra Raro': return '#FFD700'; // Dourado
+        case 'Lendario': return 'gradient'; // Será tratado no CSS
         default: return 'white';
     }
 }
