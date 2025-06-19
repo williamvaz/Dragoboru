@@ -2,6 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', async () => {
     await carregarPersonagens();
+    carregarDeck();
     atualizarRecursos();
     carregarXP();
     gerarDeck();
@@ -24,7 +25,6 @@ function goTo(page) {
 function atualizarRecursos() {
     document.getElementById('coin-amount').innerText = localStorage.getItem('coin') || 0;
     document.getElementById('gem-amount').innerText = localStorage.getItem('gem') || 0;
-    document.getElementById('trophy-amount').innerText = localStorage.getItem('trophy') || 0;
 }
 
 // XP
@@ -67,6 +67,7 @@ async function carregarPersonagens() {
 
 // ================== DECK ==================
 
+// Gerar deck na tela
 function gerarDeck() {
     const container = document.getElementById('deck-slots');
     container.innerHTML = '';
@@ -84,6 +85,7 @@ function gerarDeck() {
             slot.onclick = () => {
                 deck.splice(i, 1);
                 gerarDeck();
+                salvarDeck();
             };
         } else {
             slot.classList.add('empty');
@@ -91,6 +93,17 @@ function gerarDeck() {
 
         container.appendChild(slot);
     }
+}
+
+// Salvar deck no localStorage
+function salvarDeck() {
+    localStorage.setItem('deck', JSON.stringify(deck));
+}
+
+// Carregar deck salvo
+function carregarDeck() {
+    const deckSalvo = JSON.parse(localStorage.getItem('deck')) || [];
+    deck.push(...deckSalvo);
 }
 
 // ================== CARTAS ==================
@@ -103,8 +116,8 @@ function gerarCards() {
         const card = document.createElement('div');
         card.className = 'card-item';
 
-        // Simular desbloqueio — trocar por sua lógica real depois
-        const desbloqueado = true; // ou false para testar
+        // 🔥 Desbloqueio simulado (sempre desbloqueado por enquanto)
+        const desbloqueado = true;
 
         if (!desbloqueado) card.classList.add('locked');
 
@@ -155,8 +168,8 @@ function adicionarNoDeck(carta, desbloqueado) {
     if (deck.length < 8) {
         deck.push(carta);
         gerarDeck();
+        salvarDeck();
     } else {
         alert('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
-
