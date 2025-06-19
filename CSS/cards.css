@@ -337,26 +337,3 @@ body {
     justify-content: start;
     gap: 12px;
 }
-
-/* ===== CARTAS LENDÁRIAS ===== */
-.rainbow-text {
-    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400% 400%;
-    animation: rainbow 5s ease infinite;
-
-/* ===== BORDA LENDÁRIA ===== */
-.rainbow-border {
-    border: 3px solid transparent;
-    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
-    background-size: 400% 400%;
-    animation: rainbowBorder 4s linear infinite;
-    border-radius: 10px;
-}
-
-@keyframes rainbowBorder {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
