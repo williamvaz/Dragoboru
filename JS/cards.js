@@ -151,8 +151,7 @@ function corPorRaridade(r) {
         case 'Raro': return '#2196F3'; // Azul
         case 'Super Raro': return '#FF3300'; // Vermelho
         case 'Ultra Raro': return '#FFD700'; // Dourado
-        case 'Lendario': return 'gradient'; // Ativado como arco-íris
-        default: return 'pink';
+       case 'Lendario': return '#FF00FF'; // Rosa
     }
 }
 
