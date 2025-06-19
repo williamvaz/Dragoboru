@@ -72,3 +72,22 @@ body {
 .btn-fechar:hover {
     background-color: #f14400;
 }
+/* 🔒 Bloqueio geral de seleção e toque longo */
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
+
+/* 🔒 Bloqueio específico para imagens */
+img {
+  -webkit-touch-callout: none; /* Remove menu de toque longo no mobile */
+}
+
+/* (Opcional) Se quiser que imagens nem respondam clique, ative abaixo */
+/*
+img {
+  pointer-events: none;
+}
+*/
