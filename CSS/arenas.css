@@ -1,3 +1,16 @@
+/* ===== FONTES ===== */
+@font-face {
+    font-family: 'Clash';
+    src: url('../fonts/Clash_Regular.otf') format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Clash';
+    src: url('../fonts/Clash_Bold.otf') format('opentype');
+    font-weight: bold;
+}
+
 body {
     margin: 0;
     background: url('../assets/background.png');
