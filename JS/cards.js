@@ -118,22 +118,18 @@ function gerarCards() {
         const img = document.createElement('img');
         img.src = `Cards/Slide${carta["nº"]}.PNG`;
 
+        // 🔥 Borda de raridade
         const borda = document.createElement('div');
         borda.className = 'rarity-border';
 
         if (corPorRaridade(carta.Raridade) === 'gradient') {
             borda.classList.add('rainbow-border');
-
-            const inner = document.createElement('div');
-            inner.className = 'inner-card';
-
-            inner.appendChild(img);
-            borda.appendChild(inner);
         } else {
             borda.style.borderColor = corPorRaridade(carta.Raridade);
-            borda.appendChild(img);
         }
 
+        // 🔥 Montagem do card
+        card.appendChild(img);
         card.appendChild(borda);
 
         const label = document.createElement('div');
@@ -151,11 +147,11 @@ function gerarCards() {
 
 function corPorRaridade(r) {
     switch (r) {
-        case 'Normal': return '#9E9E9E';
-        case 'Raro': return '#2196F3';
-        case 'Super Raro': return '#FF3300';
-        case 'Ultra Raro': return '#FFD700';
-        case 'Lendario': return 'gradient';
+        case 'Normal': return '#9E9E9E'; // Cinza
+        case 'Raro': return '#2196F3'; // Azul
+        case 'Super Raro': return '#FF3300'; // Vermelho
+        case 'Ultra Raro': return '#FFD700'; // Dourado
+        case 'Lendario': return 'gradient'; // Ativado como arco-íris
         default: return 'pink';
     }
 }
