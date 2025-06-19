@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 let personagens = [];
 const deck = [];
+let cartasLevel = []; // 🔥 Vai carregar cartas.json
 
 // ================== FUNÇÕES ==================
 
@@ -62,6 +63,36 @@ async function carregarXP() {
 async function carregarPersonagens() {
     const response = await fetch('JSON/personagens.json');
     personagens = await response.json();
+
+    const cartasResponse = await fetch('JSON/cartas.json');
+    cartasLevel = await cartasResponse.json();
+
+    // 🔥 Se não existe localStorage de cartas, criar
+    if (!localStorage.getItem('cartas')) {
+        const cartas = {};
+        personagens.forEach(p => {
+            let nivelInicial = nivelInicialPorRaridade(p.Raridade);
+            cartas[p["nº"]] = { quantidade: 0, nivel: nivelInicial };
+        });
+        localStorage.setItem('cartas', JSON.stringify(cartas));
+    }
+}
+
+// ================== FUNÇÕES DE CARTAS ==================
+
+function nivelInicialPorRaridade(raridade) {
+    switch (raridade) {
+        case 'Raro': return 3;
+        case 'Super Raro': return 5;
+        case 'Ultra Raro': return 7;
+        case 'Lendario': return 9;
+        default: return 1;
+    }
+}
+
+function calcularCartasNecessarias(nivel) {
+    const nivelData = cartasLevel.find(n => n.Nivel === nivel);
+    return nivelData ? nivelData.Cartas : 999;
 }
 
 // ================== DECK ==================
@@ -101,36 +132,43 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
-// ================== CARTAS ==================
+// ================== GERAR CARTAS ==================
 
 function gerarCards() {
     const container = document.getElementById('cards-grid');
     container.innerHTML = '';
 
+    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
+
     personagens.forEach(carta => {
         const card = document.createElement('div');
         card.className = 'card-item';
 
-        const desbloqueado = true;
-
-        if (!desbloqueado) card.classList.add('locked');
+        const dadosCarta = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
 
         const img = document.createElement('img');
         img.src = `Cards/Slide${carta["nº"]}.webp`;
+        card.appendChild(img);
 
         const borda = document.createElement('div');
         borda.className = 'rarity-border';
         borda.style.borderColor = corPorRaridade(carta.Raridade);
-
-        card.appendChild(img);
         card.appendChild(borda);
 
         const label = document.createElement('div');
         label.className = 'label';
-        label.innerText = desbloqueado ? carta["Nome Completo"] : 'Bloqueada';
+        label.innerText = carta["Nome Completo"];
         card.appendChild(label);
 
-        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
+        const qtdAtual = dadosCarta.quantidade;
+        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel);
+
+        const contador = document.createElement('div');
+        contador.className = 'card-count';
+        contador.innerText = `${qtdAtual} / ${qtdNecessaria}`;
+        card.appendChild(contador);
+
+        card.onclick = () => adicionarNoDeck(carta, true);
 
         container.appendChild(card);
     });
@@ -140,11 +178,11 @@ function gerarCards() {
 
 function corPorRaridade(r) {
     switch (r) {
-        case 'Normal': return '#9E9E9E'; // Cinza
-        case 'Raro': return '#2196F3'; // Azul
-        case 'Super Raro': return '#FF3300'; // Vermelho
-        case 'Ultra Raro': return '#FFD700'; // Dourado
-        case 'Lendario': return '#FF00FF'; // Rosa (agora definitivo)
+        case 'Normal': return '#9E9E9E';
+        case 'Raro': return '#2196F3';
+        case 'Super Raro': return '#FF3300';
+        case 'Ultra Raro': return '#FFD700';
+        case 'Lendario': return '#FF00FF';
         default: return 'white';
     }
 }
@@ -168,82 +206,6 @@ function adicionarNoDeck(carta, desbloqueado) {
         gerarDeck();
         salvarDeck();
     } else {
-mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
+        mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
-
-// ================== EVOLUIR CARTAS ==================
-
-function evoluirCarta(id) {
-    const cartas = JSON.parse(localStorage.getItem('cartas'));
-    const nivelAtual = cartas[id].nivel;
-
-    // Aqui você busca no cartas.json o número de cartas necessárias para o próximo nível
-    const proximoNivel = nivelAtual + 1;
-    const requisitos = cartasLevel.find(l => l.Nivel === proximoNivel);
-
-    if (!requisitos) {
-        alert("Nível máximo atingido!");
-        return;
-    }
-
-    if (cartas[id].quantidade >= requisitos.Cartas) {
-        cartas[id].quantidade -= requisitos.Cartas;
-        cartas[id].nivel = proximoNivel;
-        localStorage.setItem('cartas', JSON.stringify(cartas));
-        alert("Carta evoluída!");
-    } else {
-        alert("Quantidade insuficiente para evoluir.");
-    }
-}
-
-function gerarCards() {
-    const container = document.getElementById('cards-grid');
-    container.innerHTML = '';
-
-    personagens.forEach(carta => {
-        const card = document.createElement('div');
-        card.className = 'card-item';
-
-        const desbloqueado = true;
-
-        const img = document.createElement('img');
-        img.src = `Cards/Slide${carta["nº"]}.PNG`;
-        card.appendChild(img);
-
-        const borda = document.createElement('div');
-        borda.className = 'rarity-border';
-        borda.style.borderColor = corPorRaridade(carta.Raridade);
-        card.appendChild(borda);
-
-        const label = document.createElement('div');
-        label.className = 'label';
-        label.innerText = desbloqueado ? carta["Nome Completo"] : 'Bloqueada';
-        card.appendChild(label);
-
-        // 🔥 AQUI ENTRA O CONTADOR 🔥
-
-        const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-        const dadosCarta = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-
-        const qtdAtual = dadosCarta.quantidade;
-        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel);
-
-        const contador = document.createElement('div');
-        contador.className = 'card-count';
-        contador.innerText = `${qtdAtual} / ${qtdNecessaria}`;
-        card.appendChild(contador);
-
-        // 🔥 Fim do contador
-
-        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
-
-        container.appendChild(card);
-    });
-}
-
-function calcularCartasNecessarias(nivel) {
-    const nivelData = cartasLevel.find(n => n.Nivel === nivel);
-    return nivelData ? nivelData.Cartas : 999;
-}
-
