@@ -156,7 +156,7 @@ function corPorRaridade(r) {
         case 'Super Raro': return '#FF3300'; // Vermelho
         case 'Ultra Raro': return '#FFD700'; // Dourado
         case 'Lendario': return 'gradient'; // Tratado via classe CSS
-        default: return '#FF00FF';
+        default: return 'pink';
     }
 }
 
