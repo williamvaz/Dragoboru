@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DB Fighters - Cards</title>
+<link rel="stylesheet" href="css/cards.css">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- TOPO -->
+<div class="top-bar">
+    <div class="resources">
+
+        <!-- XP -->
+        <div class="xp-container">
+            <div class="xp-icon">
+                <img src="assets/xp.png" alt="XP">
+                <div class="xp-level" id="xp-level">1</div>
+            </div>
+            <div class="xp-bar">
+                <div class="xp-bar-fill" id="xp-bar-fill"></div>
+                <div class="xp-bar-text" id="xp-bar-text">0/100</div>
+            </div>
+        </div>
+
+        <!-- Moeda -->
+        <div class="resource-bar">
+            <img src="assets/coin.png" class="icon" alt="Moeda">
+            <div class="bar"><span id="coin-amount">0</span></div>
+        </div>
+
+        <!-- Gemas -->
+        <div class="resource-bar">
+            <img src="assets/gem.png" class="icon" alt="Gemas">
+            <div class="bar"><span id="gem-amount">0</span></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- DECK -->
+<div class="deck-container" id="deck-container">
+    <h3>Seu Deck</h3>
+    <div class="deck-slots" id="deck-slots">
+        <!-- 8 slots do deck gerados via JS -->
+    </div>
+</div>
+
+<!-- TODAS AS CARTAS -->
+<div class="all-cards-container" id="all-cards-container">
+    <h3>Todas as Cartas</h3>
+    <div class="cards-grid" id="cards-grid">
+        <!-- Cartas geradas via JS -->
+    </div>
+</div>
+
+        <!-- ÁREA DOS CARDS -->
+        <div class="cards-container" id="cards-container">
+            <!-- Cards aparecem aqui via JS -->
+        </div>
+
+        <!-- BARRA INFERIOR -->
+        <div class="bottom-bar">
+            <button onclick="goTo('shop.html')">
+                <img src="assets/Loja.png" alt="Loja">
+            </button>
+            <button class="colecao-btn active">
+                <img src="assets/Colecao.png" alt="Coleção">
+            </button>
+            <button onclick="goTo('index.html')">
+                <img src="assets/Batalha.png" alt="Batalha">
+            </button>
+            <button onclick="goTo('shenlong.html')">
+                <img src="assets/Shenlong.png" alt="Shenlong">
+            </button>
+            <button onclick="goTo('events.html')">
+                <img src="assets/Torneio.png" alt="Torneio">
+            </button>
+        </div>
+
+    </div>
+
+    <script src="js/cards.js"></script>
+</body>
+</html>
