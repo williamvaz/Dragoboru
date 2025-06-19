@@ -24,6 +24,7 @@ function goTo(page) {
 function atualizarRecursos() {
     document.getElementById('coin-amount').innerText = localStorage.getItem('coin') || 0;
     document.getElementById('gem-amount').innerText = localStorage.getItem('gem') || 0;
+    document.getElementById('trophy-amount').innerText = localStorage.getItem('trophy') || 0;
 }
 
 // XP
@@ -113,7 +114,13 @@ function gerarCards() {
 
         const borda = document.createElement('div');
         borda.className = 'rarity-border';
-        borda.style.borderColor = corPorRaridade(carta.Raridade);
+
+        if (corPorRaridade(carta.Raridade) === 'gradient') {
+            borda.classList.add('rainbow-border');
+        } else {
+            borda.style.borderColor = corPorRaridade(carta.Raridade);
+        }
+
         card.appendChild(borda);
 
         const label = document.createElement('div');
@@ -127,16 +134,20 @@ function gerarCards() {
     });
 }
 
+// ================== RARIDADE ==================
+
 function corPorRaridade(r) {
     switch (r) {
         case 'Normal': return '#9E9E9E'; // Cinza
         case 'Raro': return '#2196F3'; // Azul
         case 'Super Raro': return '#9C27B0'; // Roxo
         case 'Ultra Raro': return '#FFD700'; // Dourado
-        case 'Lendario': return 'gradient'; // Será tratado no CSS
+        case 'Lendario': return 'gradient'; // Tratado via classe CSS
         default: return 'white';
     }
 }
+
+// ================== ADICIONAR NO DECK ==================
 
 function adicionarNoDeck(carta, desbloqueado) {
     if (!desbloqueado) return;
@@ -148,3 +159,4 @@ function adicionarNoDeck(carta, desbloqueado) {
         alert('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
+
