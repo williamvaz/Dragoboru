@@ -675,3 +675,16 @@ body {
 .btn-continuar:hover {
     background-color: #e2a500;
 }
+
+/* 🔒 Bloqueio geral de seleção e toque longo */
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
+
+/* 🔒 Bloqueio específico para imagens */
+img {
+  -webkit-touch-callout: none; /* Remove menu de toque longo no mobile */
+}
