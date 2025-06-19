@@ -270,17 +270,16 @@ body {
     position: absolute;
 }
 
-/* TODAS AS CARTAS */
-.all-cards-container {
-    margin: 10px;
-}
+/* ===== MONTAGEM DO DECK ===== */
 
+.deck-container h3,
 .all-cards-container h3 {
-    color: white;
+    color: #FFD700;
     margin-bottom: 8px;
     text-align: center;
+    text-shadow: 0 0 5px black;
+    font-weight: bold;
 }
-
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -333,6 +332,10 @@ body {
 .cards-container {
     padding: 10px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 12px;
 }
 
 /* ===== CARTAS LENDÁRIAS ===== */
@@ -344,9 +347,14 @@ body {
     animation: rainbow 5s ease infinite;
 }
 
+.rainbow-border {
+    border: 3px solid transparent;
+    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1;
+    animation: rainbow 5s ease infinite;
+}
+
 @keyframes rainbow {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
 }
-
