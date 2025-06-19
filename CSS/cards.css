@@ -346,14 +346,22 @@ body {
     background-size: 400% 400%;
     animation: rainbow 5s ease infinite;
 }
-.rainbow-border {
+.rarity-border {
     border: 3px solid;
-    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1;
-    animation: rainbowBorder 4s linear infinite;
+    border-radius: 10px;
+    pointer-events: none;
 }
 
-@keyframes rainbowBorder {
-    0% { border-image-source: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet); }
-    50% { border-image-source: linear-gradient(225deg, violet, indigo, blue, green, yellow, orange, red); }
-    100% { border-image-source: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet); }
+.rainbow-border {
+    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    padding: 3px;
+    border-radius: 10px;
+    animation: rainbow 4s linear infinite;
+}
+
+.rainbow-border .inner-card {
+    background-color: rgba(0, 0, 0, 0.8); /* Cor do fundo da carta */
+    border-radius: 7px; /* Ajusta para dentro */
+    width: 100%;
+    height: 100%;
 }
