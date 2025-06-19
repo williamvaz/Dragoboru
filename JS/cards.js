@@ -171,3 +171,79 @@ function adicionarNoDeck(carta, desbloqueado) {
 mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
+
+// ================== EVOLUIR CARTAS ==================
+
+function evoluirCarta(id) {
+    const cartas = JSON.parse(localStorage.getItem('cartas'));
+    const nivelAtual = cartas[id].nivel;
+
+    // Aqui você busca no cartas.json o número de cartas necessárias para o próximo nível
+    const proximoNivel = nivelAtual + 1;
+    const requisitos = cartasLevel.find(l => l.Nivel === proximoNivel);
+
+    if (!requisitos) {
+        alert("Nível máximo atingido!");
+        return;
+    }
+
+    if (cartas[id].quantidade >= requisitos.Cartas) {
+        cartas[id].quantidade -= requisitos.Cartas;
+        cartas[id].nivel = proximoNivel;
+        localStorage.setItem('cartas', JSON.stringify(cartas));
+        alert("Carta evoluída!");
+    } else {
+        alert("Quantidade insuficiente para evoluir.");
+    }
+}
+
+function gerarCards() {
+    const container = document.getElementById('cards-grid');
+    container.innerHTML = '';
+
+    personagens.forEach(carta => {
+        const card = document.createElement('div');
+        card.className = 'card-item';
+
+        const desbloqueado = true;
+
+        const img = document.createElement('img');
+        img.src = `Cards/Slide${carta["nº"]}.PNG`;
+        card.appendChild(img);
+
+        const borda = document.createElement('div');
+        borda.className = 'rarity-border';
+        borda.style.borderColor = corPorRaridade(carta.Raridade);
+        card.appendChild(borda);
+
+        const label = document.createElement('div');
+        label.className = 'label';
+        label.innerText = desbloqueado ? carta["Nome Completo"] : 'Bloqueada';
+        card.appendChild(label);
+
+        // 🔥 AQUI ENTRA O CONTADOR 🔥
+
+        const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
+        const dadosCarta = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+
+        const qtdAtual = dadosCarta.quantidade;
+        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel);
+
+        const contador = document.createElement('div');
+        contador.className = 'card-count';
+        contador.innerText = `${qtdAtual} / ${qtdNecessaria}`;
+        card.appendChild(contador);
+
+        // 🔥 Fim do contador
+
+        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
+
+        container.appendChild(card);
+    });
+}
+
+function calcularCartasNecessarias(nivel) {
+    const nivelData = cartasLevel.find(n => n.Nivel === nivel);
+    return nivelData ? nivelData.Cartas : 999;
+}
+

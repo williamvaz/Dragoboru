@@ -1,42 +1,52 @@
 [
     {
         "Nivel": 1,
+        "Custo": 0,
         "Cartas": 1
     },
     {
         "Nivel": 2,
+        "Custo": 10,
         "Cartas": 2
     },
     {
         "Nivel": 3,
+        "Custo": 50,
         "Cartas": 4
     },
     {
         "Nivel": 4,
+        "Custo": 100,
         "Cartas": 10
     },
     {
         "Nivel": 5,
+        "Custo": 500,
         "Cartas": 20
     },
     {
         "Nivel": 6,
+        "Custo": 1000,
         "Cartas": 50
     },
     {
         "Nivel": 7,
+        "Custo": 5000,
         "Cartas": 100
     },
     {
         "Nivel": 8,
+        "Custo": 10000,
         "Cartas": 200
     },
     {
         "Nivel": 9,
+        "Custo": 50000,
         "Cartas": 500
     },
     {
         "Nivel": 10,
+        "Custo": 100000,
         "Cartas": 1000
     }
 ]
