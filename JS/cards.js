@@ -101,6 +101,15 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
+function mostrarPopupAviso(mensagem) {
+    document.getElementById('popup-aviso-message').innerText = mensagem;
+    document.getElementById('popup-aviso').style.display = 'flex';
+}
+
+function fecharPopupAviso() {
+    document.getElementById('popup-aviso').style.display = 'none';
+}
+
 // ================== CARTAS ==================
 
 function gerarCards() {
