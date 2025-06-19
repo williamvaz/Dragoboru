@@ -3,64 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DB Fighters - Cards</title>
-<link rel="stylesheet" href="CSS/cards.css">
-
+    <title>DB Fighters - Cartas</title>
+    <link rel="stylesheet" href="CSS/cards.css">
 </head>
 
 <body>
     <div class="container">
 
         <!-- TOPO -->
-<div class="top-bar">
-    <div class="resources">
+        <div class="top-bar">
+            <div class="resources">
 
-        <!-- XP -->
-        <div class="xp-container">
-            <div class="xp-icon">
-                <img src="assets/xp.png" alt="XP">
-                <div class="xp-level" id="xp-level">1</div>
+                <!-- XP -->
+                <div class="xp-container">
+                    <div class="xp-icon">
+                        <img src="assets/xp.png" alt="XP">
+                        <div class="xp-level" id="xp-level">1</div>
+                    </div>
+                    <div class="xp-bar">
+                        <div class="xp-bar-fill" id="xp-bar-fill"></div>
+                        <div class="xp-bar-text" id="xp-bar-text">0/100</div>
+                    </div>
+                </div>
+
+                <!-- Moeda -->
+                <div class="resource-bar">
+                    <img src="assets/coin.png" class="icon" alt="Moeda">
+                    <div class="bar"><span id="coin-amount">0</span></div>
+                </div>
+
+                <!-- Gemas -->
+                <div class="resource-bar">
+                    <img src="assets/gem.png" class="icon" alt="Gemas">
+                    <div class="bar"><span id="gem-amount">0</span></div>
+                </div>
+
             </div>
-            <div class="xp-bar">
-                <div class="xp-bar-fill" id="xp-bar-fill"></div>
-                <div class="xp-bar-text" id="xp-bar-text">0/100</div>
-            </div>
         </div>
 
-        <!-- Moeda -->
-        <div class="resource-bar">
-            <img src="assets/coin.png" class="icon" alt="Moeda">
-            <div class="bar"><span id="coin-amount">0</span></div>
-        </div>
-
-        <!-- Gemas -->
-        <div class="resource-bar">
-            <img src="assets/gem.png" class="icon" alt="Gemas">
-            <div class="bar"><span id="gem-amount">0</span></div>
-        </div>
-
-    </div>
-</div>
-
-<!-- DECK -->
-<div class="deck-container" id="deck-container">
-    <h3>Seu Deck</h3>
-    <div class="deck-slots" id="deck-slots">
-        <!-- 8 slots do deck gerados via JS -->
-    </div>
-</div>
-
-<!-- TODAS AS CARTAS -->
-<div class="all-cards-container" id="all-cards-container">
-    <h3>Todas as Cartas</h3>
-    <div class="cards-grid" id="cards-grid">
-        <!-- Cartas geradas via JS -->
-    </div>
-</div>
-
-        <!-- ÁREA DOS CARDS -->
+        <!-- ÁREA DE CARTAS (Deck + Coleção) -->
         <div class="cards-container" id="cards-container">
-            <!-- Cards aparecem aqui via JS -->
+
+            <!-- DECK -->
+            <div class="deck-container" id="deck-container">
+                <h3>Seu Deck</h3>
+                <div class="deck-slots" id="deck-slots">
+                    <!-- Slots do deck via JS -->
+                </div>
+            </div>
+
+            <!-- TODAS AS CARTAS -->
+            <div class="all-cards-container" id="all-cards-container">
+                <h3>Todas as Cartas</h3>
+                <div class="cards-grid" id="cards-grid">
+                    <!-- Cartas geradas via JS -->
+                </div>
+            </div>
+
         </div>
 
         <!-- BARRA INFERIOR -->
