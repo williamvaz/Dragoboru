@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    background: url('../assets/background.png');
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+}
+
+.arenas-container {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+    padding: 20px;
+    overflow-y: scroll;
+    height: 90vh;
+}
+
+/* Card da Arena */
+.arena-card {
+    background-color: rgba(0, 0, 0, 0.5); /* Transparência de 50% */
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 0 15px #000;
+}
+
+.arena-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Header do card (nome + troféu) */
+.arena-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d84315; /* Laranja avermelhado */
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.arena-info .trophy {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.arena-info img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Botão fechar */
+.btn-fechar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f14400;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 999;
+    transition: background-color 0.3s;
+}
+
+.btn-fechar:hover {
+    background-color: #f14400;
+}
