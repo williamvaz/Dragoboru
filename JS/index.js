@@ -1,4 +1,4 @@
-// ================== INICIALIZAÇÃO ==================
+// ================== INICIALIZAÇÃO =================
 
 const recursos = ['trophy', 'xp', 'timerGratis', 'planet', 'coin', 'gem'];
 
