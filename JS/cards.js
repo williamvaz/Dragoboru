@@ -101,15 +101,6 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
-function mostrarPopupAviso(mensagem) {
-    document.getElementById('popup-aviso-message').innerText = mensagem;
-    document.getElementById('popup-aviso').style.display = 'flex';
-}
-
-function fecharPopupAviso() {
-    document.getElementById('popup-aviso').style.display = 'none';
-}
-
 // ================== CARTAS ==================
 
 function gerarCards() {
@@ -160,6 +151,15 @@ function corPorRaridade(r) {
 
 // ================== ADICIONAR NO DECK ==================
 
+function mostrarPopupAviso(mensagem) {
+    document.getElementById('popup-aviso-message').innerText = mensagem;
+    document.getElementById('popup-aviso').style.display = 'flex';
+}
+
+function fecharPopupAviso() {
+    document.getElementById('popup-aviso').style.display = 'none';
+}
+
 function adicionarNoDeck(carta, desbloqueado) {
     if (!desbloqueado) return;
 
@@ -168,6 +168,6 @@ function adicionarNoDeck(carta, desbloqueado) {
         gerarDeck();
         salvarDeck();
     } else {
-        alert('Deck cheio! Clique em uma carta do deck para remover.');
+mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
