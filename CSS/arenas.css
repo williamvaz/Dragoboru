@@ -84,10 +84,3 @@ body {
 img {
   -webkit-touch-callout: none; /* Remove menu de toque longo no mobile */
 }
-
-/* (Opcional) Se quiser que imagens nem respondam clique, ative abaixo */
-/*
-img {
-  pointer-events: none;
-}
-*/
