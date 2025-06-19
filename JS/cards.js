@@ -59,7 +59,6 @@ async function carregarXP() {
 
 // ================== PERSONAGENS ==================
 
-// Carregar JSON dos personagens
 async function carregarPersonagens() {
     const response = await fetch('JSON/personagens.json');
     personagens = await response.json();
@@ -67,7 +66,6 @@ async function carregarPersonagens() {
 
 // ================== DECK ==================
 
-// Gerar deck na tela
 function gerarDeck() {
     const container = document.getElementById('deck-slots');
     container.innerHTML = '';
@@ -81,7 +79,6 @@ function gerarDeck() {
             img.src = `Cards/Slide${deck[i]["nº"]}.PNG`;
             slot.appendChild(img);
 
-            // Remover carta do deck ao clicar no slot
             slot.onclick = () => {
                 deck.splice(i, 1);
                 gerarDeck();
@@ -95,12 +92,10 @@ function gerarDeck() {
     }
 }
 
-// Salvar deck no localStorage
 function salvarDeck() {
     localStorage.setItem('deck', JSON.stringify(deck));
 }
 
-// Carregar deck salvo
 function carregarDeck() {
     const deckSalvo = JSON.parse(localStorage.getItem('deck')) || [];
     deck.push(...deckSalvo);
@@ -116,22 +111,27 @@ function gerarCards() {
         const card = document.createElement('div');
         card.className = 'card-item';
 
-        // 🔥 Desbloqueio simulado (sempre desbloqueado por enquanto)
         const desbloqueado = true;
 
         if (!desbloqueado) card.classList.add('locked');
 
         const img = document.createElement('img');
         img.src = `Cards/Slide${carta["nº"]}.PNG`;
-        card.appendChild(img);
 
         const borda = document.createElement('div');
         borda.className = 'rarity-border';
 
         if (corPorRaridade(carta.Raridade) === 'gradient') {
             borda.classList.add('rainbow-border');
+
+            const inner = document.createElement('div');
+            inner.className = 'inner-card';
+
+            inner.appendChild(img);
+            borda.appendChild(inner);
         } else {
             borda.style.borderColor = corPorRaridade(carta.Raridade);
+            borda.appendChild(img);
         }
 
         card.appendChild(borda);
@@ -151,11 +151,11 @@ function gerarCards() {
 
 function corPorRaridade(r) {
     switch (r) {
-        case 'Normal': return '#9E9E9E'; // Cinza
-        case 'Raro': return '#2196F3'; // Azul
-        case 'Super Raro': return '#FF3300'; // Vermelho
-        case 'Ultra Raro': return '#FFD700'; // Dourado
-        case 'Lendario': return 'gradient'; // Tratado via classe CSS
+        case 'Normal': return '#9E9E9E';
+        case 'Raro': return '#2196F3';
+        case 'Super Raro': return '#FF3300';
+        case 'Ultra Raro': return '#FFD700';
+        case 'Lendario': return 'gradient';
         default: return 'pink';
     }
 }
