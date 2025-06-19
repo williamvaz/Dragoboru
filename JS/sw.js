@@ -1,12 +1,11 @@
 const cacheName = 'db-fighters-cache-v1';
 const filesToCache = [
-  '/',
-  '/index.html',
-  '/CSS/index.css',
-  '/JS/index.js',
-  '/Logo.png',
-  '/JSON/manifest.json'
-  // ➕ Adicione outros arquivos que queira deixar offline
+  '/Dragoboru/',
+  '/Dragoboru/index.html',
+  '/Dragoboru/CSS/index.css',
+  '/Dragoboru/JS/index.js',
+  '/Dragoboru/Logo.png',
+  '/Dragoboru/JSON/manifest.json'
 ];
 
 self.addEventListener('install', event => {
