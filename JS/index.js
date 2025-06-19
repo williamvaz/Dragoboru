@@ -556,6 +556,10 @@ function fecharAbertura() {
     atualizarSlots();    // Atualiza os slots dos pacotes
 }
 
+// 🔒 Bloqueio de menu de contexto (botão direito e toque longo)
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+
 // ================== LOOP ==================
 
 setInterval(atualizarSlots, 1000);
