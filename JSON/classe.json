@@ -1,0 +1,42 @@
+[
+    {
+        "Classe": "Z",
+        "ValorMin": 701,
+        "ValorMax": 800
+    },
+    {
+        "Classe": "AA",
+        "ValorMin": 601,
+        "ValorMax": 700
+    },
+    {
+        "Classe": "A",
+        "ValorMin": 501,
+        "ValorMax": 600
+    },
+    {
+        "Classe": "B",
+        "ValorMin": 401,
+        "ValorMax": 500
+    },
+    {
+        "Classe": "C",
+        "ValorMin": 301,
+        "ValorMax": 400
+    },
+    {
+        "Classe": "D",
+        "ValorMin": 201,
+        "ValorMax": 300
+    },
+    {
+        "Classe": "E",
+        "ValorMin": 101,
+        "ValorMax": 200
+    },
+    {
+        "Classe": "F",
+        "ValorMin": 0,
+        "ValorMax": 100
+    }
+]

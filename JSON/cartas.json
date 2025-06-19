@@ -1,0 +1,42 @@
+[
+    {
+        "Nivel": 1,
+        "Cartas": 1
+    },
+    {
+        "Nivel": 2,
+        "Cartas": 2
+    },
+    {
+        "Nivel": 3,
+        "Cartas": 4
+    },
+    {
+        "Nivel": 4,
+        "Cartas": 10
+    },
+    {
+        "Nivel": 5,
+        "Cartas": 20
+    },
+    {
+        "Nivel": 6,
+        "Cartas": 50
+    },
+    {
+        "Nivel": 7,
+        "Cartas": 100
+    },
+    {
+        "Nivel": 8,
+        "Cartas": 200
+    },
+    {
+        "Nivel": 9,
+        "Cartas": 500
+    },
+    {
+        "Nivel": 10,
+        "Cartas": 1000
+    }
+]
