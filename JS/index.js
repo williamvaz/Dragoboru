@@ -349,7 +349,7 @@ async function gerarPremios(pacoteID) {
                 premios.push({
                     tipo: tipo.chave.toLowerCase(),
                     nome: sorteada['Nome Completo'],
-                    imagem: `Cards/Slide${sorteada['nº']}.PNG`,
+                    imagem: `Cards/Slide${sorteada['nº']}.webp`,
                     quantidade
                 });
             }
@@ -364,7 +364,7 @@ async function gerarPremios(pacoteID) {
         premios.push({
             tipo: 'normal',
             nome: sorteada['Nome Completo'],
-            imagem: `Cards/Slide${sorteada['nº']}.PNG`,
+            imagem: `Cards/Slide${sorteada['nº']}.webp`,
             quantidade
         });
     }

@@ -76,7 +76,7 @@ function gerarDeck() {
 
         if (deck[i]) {
             const img = document.createElement('img');
-            img.src = `Cards/Slide${deck[i]["nº"]}.PNG`;
+            img.src = `Cards/Slide${deck[i]["nº"]}.webp`;
             slot.appendChild(img);
 
             slot.onclick = () => {
@@ -116,7 +116,7 @@ function gerarCards() {
         if (!desbloqueado) card.classList.add('locked');
 
         const img = document.createElement('img');
-        img.src = `Cards/Slide${carta["nº"]}.PNG`;
+        img.src = `Cards/Slide${carta["nº"]}.webp`;
 
         const borda = document.createElement('div');
         borda.className = 'rarity-border';
