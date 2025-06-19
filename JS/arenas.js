@@ -26,3 +26,7 @@ fetch('JSON/arenas.json')
         });
     })
     .catch(err => console.error('Erro ao carregar arenas:', err));
+
+// 🔒 Bloqueio de menu de contexto (botão direito e toque longo)
+document.addEventListener('contextmenu', event => event.preventDefault());
+
