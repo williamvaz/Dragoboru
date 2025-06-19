@@ -187,6 +187,17 @@ function corPorRaridade(r) {
     }
 }
 
+function nivelInicialPorRaridade(raridade) {
+    switch (raridade) {
+        case 'Normal': return 1;
+        case 'Raro': return 3;
+        case 'Super Raro': return 5;
+        case 'Ultra Raro': return 7;
+        case 'Lendario': return 9;
+        default: return 1;
+    }
+}
+
 // ================== ADICIONAR NO DECK ==================
 
 function mostrarPopupAviso(mensagem) {
