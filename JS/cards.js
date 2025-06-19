@@ -153,10 +153,10 @@ function corPorRaridade(r) {
     switch (r) {
         case 'Normal': return '#9E9E9E'; // Cinza
         case 'Raro': return '#2196F3'; // Azul
-        case 'Super Raro': return '#9C27B0'; // Roxo
+        case 'Super Raro': return '#FF3300'; // Vermelho
         case 'Ultra Raro': return '#FFD700'; // Dourado
         case 'Lendario': return 'gradient'; // Tratado via classe CSS
-        default: return 'white';
+        default: return '#FF00FF';
     }
 }
 
