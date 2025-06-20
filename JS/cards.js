@@ -141,8 +141,6 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
-// ================== GERAR CARTAS ==================
-
 function gerarCards() {
     const container = document.getElementById('cards-grid');
     container.innerHTML = '';
@@ -170,11 +168,26 @@ function gerarCards() {
 
         const qtdAtual = dadosCarta.quantidade;
         const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel, carta.Raridade);
+        const porcentagem = Math.min((qtdAtual / qtdNecessaria) * 100, 100);
 
-        const info = document.createElement('div');
-        info.className = 'card-info';
-        info.innerText = `${qtdAtual} / ${qtdNecessaria}`;
-        card.appendChild(info);
+        // 🔥 Container da barra
+        const progressContainer = document.createElement('div');
+        progressContainer.className = 'card-progress-container';
+
+        // 🔥 Barra preenchida
+        const progressFill = document.createElement('div');
+        progressFill.className = 'card-progress-fill';
+        progressFill.style.width = `${porcentagem}%`;
+
+        // 🔥 Texto da barra
+        const progressText = document.createElement('div');
+        progressText.className = 'card-progress-text';
+        progressText.innerText = `${qtdAtual} / ${qtdNecessaria}`;
+
+        // 🔥 Montagem da barra
+        progressContainer.appendChild(progressFill);
+        progressContainer.appendChild(progressText);
+        card.appendChild(progressContainer);
 
         card.onclick = () => adicionarNoDeck(carta, true);
 
