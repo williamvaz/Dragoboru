@@ -142,7 +142,6 @@ function gerarCards() {
 
     personagens.forEach(carta => {
         const card = document.createElement('div');
-        card.className = 'card-item';
 
         const dadosCarta = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
 
@@ -154,11 +153,6 @@ function gerarCards() {
         borda.className = 'rarity-border';
         borda.style.borderColor = corPorRaridade(carta.Raridade);
         card.appendChild(borda);
-
-        const label = document.createElement('div');
-        label.className = 'label';
-        label.innerText = carta["Nome Completo"];
-        card.appendChild(label);
 
         const qtdAtual = dadosCarta.quantidade;
         const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel);
