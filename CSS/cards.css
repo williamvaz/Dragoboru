@@ -460,3 +460,8 @@ body {
     font-weight: bold;
     text-shadow: 0 0 2px black;
 }
+
+/* 🔥 Estilo para cartas bloqueadas */
+.card-item.locked {
+    filter: grayscale(100%) brightness(0.5);
+}

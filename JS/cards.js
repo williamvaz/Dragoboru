@@ -141,6 +141,8 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
+// ================== CARDS ==================
+
 function gerarCards() {
     const container = document.getElementById('cards-grid');
     container.innerHTML = '';
@@ -152,6 +154,10 @@ function gerarCards() {
         card.className = 'card-item';
 
         const dadosCarta = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+
+        const qtdAtual = dadosCarta.quantidade;
+        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel, carta.Raridade);
+        const porcentagem = Math.min((qtdAtual / qtdNecessaria) * 100, 100);
 
         const img = document.createElement('img');
         img.src = `Cards/Slide${carta["nº"]}.webp`;
@@ -166,30 +172,34 @@ function gerarCards() {
         label.className = 'label';
         card.appendChild(label);
 
-        const qtdAtual = dadosCarta.quantidade;
-        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel, carta.Raridade);
-        const porcentagem = Math.min((qtdAtual / qtdNecessaria) * 100, 100);
+        // 🔥 Verificar se está bloqueada (0 cartas)
+        const desbloqueado = qtdAtual > 0;
+        if (!desbloqueado) {
+            card.classList.add('locked');
+        }
 
-        // 🔥 Container da barra
+        // 🔥 Criar barra de progresso
         const progressContainer = document.createElement('div');
         progressContainer.className = 'card-progress-container';
 
-        // 🔥 Barra preenchida
         const progressFill = document.createElement('div');
         progressFill.className = 'card-progress-fill';
         progressFill.style.width = `${porcentagem}%`;
 
-        // 🔥 Texto da barra
         const progressText = document.createElement('div');
         progressText.className = 'card-progress-text';
         progressText.innerText = `${qtdAtual} / ${qtdNecessaria}`;
 
-        // 🔥 Montagem da barra
         progressContainer.appendChild(progressFill);
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = () => adicionarNoDeck(carta, true);
+        // 🔥 Clique só funciona se desbloqueada
+        card.onclick = () => {
+            if (desbloqueado) {
+                adicionarNoDeck(carta, desbloqueado);
+            }
+        };
 
         container.appendChild(card);
     });
