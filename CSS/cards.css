@@ -382,16 +382,35 @@ body {
     gap: 12px;
 }
 
-/* ===== QUANTIDADE DE CARTAS ===== */
-.card-count {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    background-color: rgba(0, 0, 0, 0.8);
+/* ===== ITENS DE CARTAS ===== */
+.card-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.6);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-item img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-info {
+    background-color: rgba(0, 0, 0, 0.9);
     color: white;
-    padding: 2px 6px;
-    border-radius: 8px;
+    width: 100%;
+    padding: 2px 4px;
     font-size: 0.7em;
     font-weight: bold;
     text-align: center;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }

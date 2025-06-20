@@ -163,10 +163,10 @@ function gerarCards() {
         const qtdAtual = dadosCarta.quantidade;
         const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel);
 
-        const contador = document.createElement('div');
-        contador.className = 'card-count';
-        contador.innerText = `${qtdAtual} / ${qtdNecessaria}`;
-        card.appendChild(contador);
+        const info = document.createElement('div');
+        info.className = 'card-info';
+        info.innerText = `${qtdAtual} / ${qtdNecessaria}`;
+        card.appendChild(info);
 
         card.onclick = () => adicionarNoDeck(carta, true);
 
