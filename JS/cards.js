@@ -90,10 +90,19 @@ function nivelInicialPorRaridade(raridade) {
     }
 }
 
-function calcularCartasNecessarias(nivel) {
-    const nivelData = cartasLevel.find(n => n.Nivel === nivel);
-    return nivelData ? nivelData.Cartas : 999;
+function calcularCartasNecessarias(nivel, raridade) {
+    const nivelBase = nivelInicialPorRaridade(raridade);
+
+    if (nivel === nivelBase) {
+        // Sempre usa o requisito de nível 1
+        const dadosBase = cartasLevel.find(n => n.Nivel === 1);
+        return dadosBase ? dadosBase.Cartas : 999;
+    } else {
+        const dados = cartasLevel.find(n => n.Nivel === nivel);
+        return dados ? dados.Cartas : 999;
+    }
 }
+
 
 // ================== DECK ==================
 
@@ -160,7 +169,7 @@ function gerarCards() {
         card.appendChild(label);
 
         const qtdAtual = dadosCarta.quantidade;
-        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel);
+        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel, carta.Raridade);
 
         const info = document.createElement('div');
         info.className = 'card-info';
