@@ -6,13 +6,11 @@
     <title>DB Fighters - Cartas</title>
     <link rel="stylesheet" href="CSS/cards.css">
 
-<link rel="manifest" href="JSON/manifest.json">
-<meta name="theme-color" content="#000000">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <link rel="manifest" href="JSON/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 
 <body>
@@ -21,7 +19,6 @@
         <!-- TOPO -->
         <div class="top-bar">
             <div class="resources">
-
                 <!-- XP -->
                 <div class="xp-container">
                     <div class="xp-icon">
@@ -45,122 +42,115 @@
                     <img src="assets/gem.png" class="icon" alt="Gemas">
                     <div class="bar"><span id="gem-amount">0</span></div>
                 </div>
-
             </div>
         </div>
 
-        <!-- ÁREA DE CARTAS (Deck + Coleção) -->
-        <div class="cards-container" id="cards-container">
+        <!-- DECK -->
+        <div class="deck-container" id="deck-container">
+            <h3>Seu Deck</h3>
+            <div class="deck-slots" id="deck-slots">
+                <!-- Slots do deck via JS -->
+            </div>
+        </div>
 
-            <!-- DECK -->
-            <div class="deck-container" id="deck-container">
-                <h3>Seu Deck</h3>
-                <div class="deck-slots" id="deck-slots">
-                    <!-- Slots do deck via JS -->
+        <!-- 🔥 FILTROS -->
+        <div class="filtros-container">
+            <!-- 🔸 Filtro Raridade -->
+            <div class="dropdown">
+                <button onclick="toggleDropdown('raridade-dropdown')">Raridade ▾</button>
+                <div id="raridade-dropdown" class="dropdown-content">
+                    <div onclick="filtrarPorRaridade('Todas')">Todas</div>
+                    <div onclick="filtrarPorRaridade('Normal')">Normal</div>
+                    <div onclick="filtrarPorRaridade('Raro')">Raro</div>
+                    <div onclick="filtrarPorRaridade('Super Raro')">Super Raro</div>
+                    <div onclick="filtrarPorRaridade('Ultra Raro')">Ultra Raro</div>
+                    <div onclick="filtrarPorRaridade('Lendario')">Lendário</div>
                 </div>
             </div>
 
-            <!-- TODAS AS CARTAS -->
-            <div class="all-cards-container" id="all-cards-container">
-                <h3>Todas as Cartas</h3>
-                <div class="cards-grid" id="cards-grid">
-                    <!-- Cartas geradas via JS -->
+            <!-- 🔸 Filtro Saga -->
+            <div class="dropdown">
+                <button onclick="toggleDropdown('saga-dropdown')">Saga ▾</button>
+                <div id="saga-dropdown" class="dropdown-content">
+                    <div onclick="filtrarPorSaga('Todas')">Todas</div>
+                    <div onclick="filtrarPorSaga('DB')">DB</div>
+                    <div onclick="filtrarPorSaga('DBZ')">DBZ</div>
+                    <div onclick="filtrarPorSaga('DBGT')">DBGT</div>
+                    <div onclick="filtrarPorSaga('DBS')">DBS</div>
+                    <div onclick="filtrarPorSaga('DBSA')">DBSA</div>
+                    <div onclick="filtrarPorSaga('DBX')">DBX</div>
+                    <div onclick="filtrarPorSaga('DBF')">DBF</div>
+                    <div onclick="filtrarPorSaga('DBD')">DBD</div>
+                    <div onclick="filtrarPorSaga('DBAF')">DBAF</div>
+                    <div onclick="filtrarPorSaga('SDBH')">SDBH</div>
                 </div>
             </div>
 
+            <!-- 🔸 Filtro Status -->
+            <div class="dropdown">
+                <button onclick="toggleDropdown('status-dropdown')">Status ▾</button>
+                <div id="status-dropdown" class="dropdown-content">
+                    <div onclick="filtrarPorStatus('todos')">Todos</div>
+                    <div onclick="filtrarPorStatus('desbloqueados')">Desbloqueados</div>
+                    <div onclick="filtrarPorStatus('bloqueados')">Bloqueados</div>
+                </div>
+            </div>
+
+            <!-- 🔸 Ordenação -->
+            <div class="dropdown">
+                <button onclick="toggleDropdown('ordenar-dropdown')">Ordenar ▾</button>
+                <div id="ordenar-dropdown" class="dropdown-content">
+                    <div onclick="ordenarPor('id')">ID</div>
+                    <div onclick="ordenarPor('nome')">Nome</div>
+                    <div onclick="ordenarPor('nivel')">Nível</div>
+                    <div onclick="ordenarPor('hp')">HP</div>
+                    <div onclick="ordenarPor('atk')">ATK</div>
+                    <div onclick="ordenarPor('custo')">Custo</div>
+                </div>
+            </div>
         </div>
 
-        <!-- BARRA INFERIOR -->
-        <div class="bottom-bar">
-            <button onclick="goTo('shop.html')">
-                <img src="assets/Loja.png" alt="Loja">
-            </button>
-            <button class="colecao-btn active">
-                <img src="assets/Colecao.png" alt="Coleção">
-            </button>
-            <button onclick="goTo('index.html')">
-                <img src="assets/Batalha.png" alt="Batalha">
-            </button>
-            <button onclick="goTo('shenlong.html')">
-                <img src="assets/Shenlong.png" alt="Shenlong">
-            </button>
-            <button onclick="goTo('events.html')">
-                <img src="assets/Torneio.png" alt="Torneio">
-            </button>
+        <!-- TODAS AS CARTAS -->
+        <div class="all-cards-container" id="all-cards-container">
+            <h3>Todas as Cartas</h3>
+            <div class="cards-grid" id="cards-grid">
+                <!-- Cartas geradas via JS -->
+            </div>
         </div>
 
+    </div> <!-- 🔥 Fecha container -->
+
+    <!-- BARRA INFERIOR -->
+    <div class="bottom-bar">
+        <button onclick="goTo('shop.html')">
+            <img src="assets/Loja.png" alt="Loja">
+        </button>
+        <button class="colecao-btn active">
+            <img src="assets/Colecao.png" alt="Coleção">
+        </button>
+        <button onclick="goTo('index.html')">
+            <img src="assets/Batalha.png" alt="Batalha">
+        </button>
+        <button onclick="goTo('shenlong.html')">
+            <img src="assets/Shenlong.png" alt="Shenlong">
+        </button>
+        <button onclick="goTo('events.html')">
+            <img src="assets/Torneio.png" alt="Torneio">
+        </button>
     </div>
 
+    <!-- POPUP -->
+    <div id="popup-aviso" class="popup" style="display: none;">
+        <div class="popup-content">
+            <p id="popup-aviso-message"></p>
+            <div class="popup-buttons">
+                <button onclick="fecharPopupAviso()">Ok</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script src="JS/cards.js"></script>
     <script src="JS/salvarcards.js"></script>
-
-<div id="popup-aviso" class="popup" style="display: none;">
-    <div class="popup-content">
-        <p id="popup-aviso-message"></p>
-        <div class="popup-buttons">
-            <button onclick="fecharPopupAviso()">Ok</button>
-        </div>
-    </div>
-</div>
-
-<div class="filtros-container">
-
-    <!-- 🔸 Filtro Raridade -->
-    <div class="dropdown">
-        <button onclick="toggleDropdown('raridade-dropdown')">Raridade ▾</button>
-        <div id="raridade-dropdown" class="dropdown-content">
-            <div onclick="filtrarPorRaridade('Todas')">Todas</div>
-            <div onclick="filtrarPorRaridade('Normal')">Normal</div>
-            <div onclick="filtrarPorRaridade('Raro')">Raro</div>
-            <div onclick="filtrarPorRaridade('Super Raro')">Super Raro</div>
-            <div onclick="filtrarPorRaridade('Ultra Raro')">Ultra Raro</div>
-            <div onclick="filtrarPorRaridade('Lendario')">Lendário</div>
-        </div>
-    </div>
-
-    <!-- 🔸 Filtro Saga -->
-    <div class="dropdown">
-        <button onclick="toggleDropdown('saga-dropdown')">Saga ▾</button>
-        <div id="saga-dropdown" class="dropdown-content">
-            <div onclick="filtrarPorSaga('Todas')">Todas</div>
-            <div onclick="filtrarPorSaga('DB')">DB</div>
-            <div onclick="filtrarPorSaga('DBZ')">DBZ</div>
-            <div onclick="filtrarPorSaga('DBGT')">DBGT</div>
-            <div onclick="filtrarPorSaga('DBS')">DBS</div>
-            <div onclick="filtrarPorSaga('DBSA')">DBSA</div>
-            <div onclick="filtrarPorSaga('DBX')">DBX</div>
-            <div onclick="filtrarPorSaga('DBF')">DBF</div>
-            <div onclick="filtrarPorSaga('DBD')">DBD</div>
-            <div onclick="filtrarPorSaga('DBAF')">DBAF</div>
-            <div onclick="filtrarPorSaga('SDBH')">SDBH</div>
-        </div>
-    </div>
-
-    <!-- 🔸 Filtro Status -->
-    <div class="dropdown">
-        <button onclick="toggleDropdown('status-dropdown')">Status ▾</button>
-        <div id="status-dropdown" class="dropdown-content">
-            <div onclick="filtrarPorStatus('todos')">Todos</div>
-            <div onclick="filtrarPorStatus('desbloqueados')">Desbloqueados</div>
-            <div onclick="filtrarPorStatus('bloqueados')">Bloqueados</div>
-        </div>
-    </div>
-
-    <!-- 🔸 Ordenação -->
-    <div class="dropdown">
-        <button onclick="toggleDropdown('ordenar-dropdown')">Ordenar ▾</button>
-        <div id="ordenar-dropdown" class="dropdown-content">
-            <div onclick="ordenarPor('id')">ID</div>
-            <div onclick="ordenarPor('nome')">Nome</div>
-            <div onclick="ordenarPor('nivel')">Nível</div>
-            <div onclick="ordenarPor('hp')">HP</div>
-            <div onclick="ordenarPor('atk')">ATK</div>
-            <div onclick="ordenarPor('custo')">Custo</div>
-        </div>
-    </div>
-
-</div>
-
-
 </body>
 </html>
