@@ -236,6 +236,14 @@ body {
     text-align: center;
 }
 
+/* 🔥 Correção aplicada aqui */
+.deck-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
 .deck-slot {
     width: 60px;
     height: 80px;
@@ -262,6 +270,7 @@ body {
     font-size: 24px;
     position: absolute;
 }
+
 
 /* ===== FILTROS ===== */
 .filtros-container {
