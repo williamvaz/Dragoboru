@@ -153,7 +153,6 @@ function gerarCards() {
     container.innerHTML = '';
 
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-
     let lista = personagens.slice();
 
     // 🔥 Filtros
@@ -191,6 +190,7 @@ function gerarCards() {
 
         const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
         const desbloqueado = dados.quantidade > 0;
+        const corRaridade = corPorRaridade(carta.Raridade);
 
         const img = document.createElement('img');
         img.src = `Cards/Slide${carta["nº"]}.webp`;
@@ -199,8 +199,15 @@ function gerarCards() {
 
         const borda = document.createElement('div');
         borda.className = 'rarity-border';
-        borda.style.borderColor = corPorRaridade(carta.Raridade);
+        borda.style.borderColor = corRaridade;
         card.appendChild(borda);
+
+        // 🔥 Label de Nível ou Bloqueado
+        const nivelLabel = document.createElement('div');
+        nivelLabel.className = 'card-nivel';
+        nivelLabel.innerText = desbloqueado ? `Nível ${dados.nivel}` : 'Bloqueado';
+        nivelLabel.style.color = corRaridade;
+        card.appendChild(nivelLabel);
 
         const qtdAtual = dados.quantidade;
         const qtdNecessaria = calcularCartasNecessarias(dados.nivel, carta.Raridade);
@@ -226,7 +233,6 @@ function gerarCards() {
         container.appendChild(card);
     });
 }
-
 
 // ================== RARIDADE ==================
 
