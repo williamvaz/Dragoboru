@@ -312,9 +312,9 @@ async function gerarPremios(pacoteID) {
     ];
 
     const recursos = [
-        { nome: 'Gemas', chave: 'Gemas', imagem: 'assets/gem2.png' },
-        { nome: 'Ouro', chave: 'Ouro', imagem: 'assets/coin2.png' },
-        { nome: 'Esferas', chave: 'Esferas', imagem: 'assets/Shenlong2.png' },
+        { nome: 'Gemas', chave: 'Gemas', imagem: 'assets/gem2.webp' },
+        { nome: 'Ouro', chave: 'Ouro', imagem: 'assets/coin2.webp' },
+        { nome: 'Esferas', chave: 'Esferas', imagem: 'assets/Shenlong2.webp' },
     ];
 
     recursos.forEach(r => {
@@ -425,7 +425,7 @@ function mostrarFlip() {
     const front = document.createElement('div');
     front.classList.add('card-front');
     const imgFront = document.createElement('img');
-    imgFront.src = 'assets/Back.PNG';
+    imgFront.src = 'assets/Back.webp';
     front.appendChild(imgFront);
 
     // 🔥 Verso da carta
