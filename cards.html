@@ -103,5 +103,64 @@
     </div>
 </div>
 
+<div class="filtros-container">
+
+    <!-- 🔸 Filtro Raridade -->
+    <div class="dropdown">
+        <button onclick="toggleDropdown('raridade-dropdown')">Raridade ▾</button>
+        <div id="raridade-dropdown" class="dropdown-content">
+            <div onclick="filtrarPorRaridade('Todas')">Todas</div>
+            <div onclick="filtrarPorRaridade('Normal')">Normal</div>
+            <div onclick="filtrarPorRaridade('Raro')">Raro</div>
+            <div onclick="filtrarPorRaridade('Super Raro')">Super Raro</div>
+            <div onclick="filtrarPorRaridade('Ultra Raro')">Ultra Raro</div>
+            <div onclick="filtrarPorRaridade('Lendario')">Lendário</div>
+        </div>
+    </div>
+
+    <!-- 🔸 Filtro Saga -->
+    <div class="dropdown">
+        <button onclick="toggleDropdown('saga-dropdown')">Saga ▾</button>
+        <div id="saga-dropdown" class="dropdown-content">
+            <div onclick="filtrarPorSaga('Todas')">Todas</div>
+            <div onclick="filtrarPorSaga('DB')">DB</div>
+            <div onclick="filtrarPorSaga('DBZ')">DBZ</div>
+            <div onclick="filtrarPorSaga('DBGT')">DBGT</div>
+            <div onclick="filtrarPorSaga('DBS')">DBS</div>
+            <div onclick="filtrarPorSaga('DBSA')">DBSA</div>
+            <div onclick="filtrarPorSaga('DBX')">DBX</div>
+            <div onclick="filtrarPorSaga('DBF')">DBF</div>
+            <div onclick="filtrarPorSaga('DBD')">DBD</div>
+            <div onclick="filtrarPorSaga('DBAF')">DBAF</div>
+            <div onclick="filtrarPorSaga('SDBH')">SDBH</div>
+        </div>
+    </div>
+
+    <!-- 🔸 Filtro Status -->
+    <div class="dropdown">
+        <button onclick="toggleDropdown('status-dropdown')">Status ▾</button>
+        <div id="status-dropdown" class="dropdown-content">
+            <div onclick="filtrarPorStatus('todos')">Todos</div>
+            <div onclick="filtrarPorStatus('desbloqueados')">Desbloqueados</div>
+            <div onclick="filtrarPorStatus('bloqueados')">Bloqueados</div>
+        </div>
+    </div>
+
+    <!-- 🔸 Ordenação -->
+    <div class="dropdown">
+        <button onclick="toggleDropdown('ordenar-dropdown')">Ordenar ▾</button>
+        <div id="ordenar-dropdown" class="dropdown-content">
+            <div onclick="ordenarPor('id')">ID</div>
+            <div onclick="ordenarPor('nome')">Nome</div>
+            <div onclick="ordenarPor('nivel')">Nível</div>
+            <div onclick="ordenarPor('hp')">HP</div>
+            <div onclick="ordenarPor('atk')">ATK</div>
+            <div onclick="ordenarPor('custo')">Custo</div>
+        </div>
+    </div>
+
+</div>
+
+
 </body>
 </html>

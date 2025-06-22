@@ -14,6 +14,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 let personagens = [];
 const deck = [];
 let cartasLevel = []; // 🔥 Vai carregar cartas.json
+let filtroRaridade = 'Todas';
+let filtroSaga = 'Todas';
+let filtroStatus = 'todos'; // todos | desbloqueados | bloqueados
+let ordenacao = 'id'; // id | nome | nivel | hp | atk | custo
+
 
 // ================== FUNÇÕES ==================
 
@@ -149,18 +154,47 @@ function gerarCards() {
 
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
 
-    personagens.forEach(carta => {
+    let lista = personagens.slice();
+
+    // 🔥 Filtros
+    lista = lista.filter(carta => {
+        const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+        const desbloqueado = dados.quantidade > 0;
+
+        if (filtroRaridade !== 'Todas' && carta.Raridade !== filtroRaridade) return false;
+        if (filtroSaga !== 'Todas' && carta.Saga !== filtroSaga) return false;
+        if (filtroStatus === 'desbloqueados' && !desbloqueado) return false;
+        if (filtroStatus === 'bloqueados' && desbloqueado) return false;
+        return true;
+    });
+
+    // 🔥 Ordenação
+    lista.sort((a, b) => {
+        const dadosA = cartasSalvas[a["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(a.Raridade) };
+        const dadosB = cartasSalvas[b["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(b.Raridade) };
+
+        switch (ordenacao) {
+            case 'id': return parseInt(a["nº"]) - parseInt(b["nº"]);
+            case 'nome': return a["Nome Completo"].localeCompare(b["Nome Completo"]);
+            case 'nivel': return dadosB.nivel - dadosA.nivel;
+            case 'hp': return b.HP - a.HP;
+            case 'atk': return b.ATK - a.ATK;
+            case 'custo': return b.CUSTO - a.CUSTO;
+            default: return 0;
+        }
+    });
+
+    // 🔥 Renderização
+    lista.forEach(carta => {
         const card = document.createElement('div');
         card.className = 'card-item';
 
-        const dadosCarta = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-
-        const qtdAtual = dadosCarta.quantidade;
-        const qtdNecessaria = calcularCartasNecessarias(dadosCarta.nivel, carta.Raridade);
-        const porcentagem = Math.min((qtdAtual / qtdNecessaria) * 100, 100);
+        const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+        const desbloqueado = dados.quantidade > 0;
 
         const img = document.createElement('img');
         img.src = `Cards/Slide${carta["nº"]}.webp`;
+        if (!desbloqueado) img.style.filter = 'grayscale(100%) brightness(0.4)';
         card.appendChild(img);
 
         const borda = document.createElement('div');
@@ -168,17 +202,10 @@ function gerarCards() {
         borda.style.borderColor = corPorRaridade(carta.Raridade);
         card.appendChild(borda);
 
-        const label = document.createElement('div');
-        label.className = 'label';
-        card.appendChild(label);
+        const qtdAtual = dados.quantidade;
+        const qtdNecessaria = calcularCartasNecessarias(dados.nivel, carta.Raridade);
+        const porcentagem = Math.min((qtdAtual / qtdNecessaria) * 100, 100);
 
-        // 🔥 Verificar se está bloqueada (0 cartas)
-        const desbloqueado = qtdAtual > 0;
-        if (!desbloqueado) {
-            card.classList.add('locked');
-        }
-
-        // 🔥 Criar barra de progresso
         const progressContainer = document.createElement('div');
         progressContainer.className = 'card-progress-container';
 
@@ -194,16 +221,12 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        // 🔥 Clique só funciona se desbloqueada
-        card.onclick = () => {
-            if (desbloqueado) {
-                adicionarNoDeck(carta, desbloqueado);
-            }
-        };
+        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
 
         container.appendChild(card);
     });
 }
+
 
 // ================== RARIDADE ==================
 
@@ -250,4 +273,38 @@ function adicionarNoDeck(carta, desbloqueado) {
     } else {
         mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
     }
+}
+
+function toggleDropdown(id) {
+    document.getElementById(id).classList.toggle("show");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown button')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].classList.remove('show');
+        }
+    }
+}
+
+// ================== FILTROS E ORDENAÇÃO ==================
+function filtrarPorRaridade(raridade) {
+    filtroRaridade = raridade;
+    gerarCards();
+}
+
+function filtrarPorSaga(saga) {
+    filtroSaga = saga;
+    gerarCards();
+}
+
+function filtrarPorStatus(status) {
+    filtroStatus = status;
+    gerarCards();
+}
+
+function ordenarPor(tipo) {
+    ordenacao = tipo;
+    gerarCards();
 }
