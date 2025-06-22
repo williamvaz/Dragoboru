@@ -316,9 +316,11 @@ body {
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    justify-items: center; /* 🔥 Isso centraliza */
 }
+
 
 /* ===== CARD ITEM ===== */
 .card-item {
