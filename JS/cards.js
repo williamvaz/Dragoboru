@@ -258,7 +258,8 @@ function gerarCards() {
 
 function abrirPopupCarta(carta, desbloqueado) {
     cartaSelecionada = { ...carta, desbloqueado };
-    document.getElementById('popup-carta').style.display = 'flex';
+    const popup = document.getElementById('popup-carta');
+    popup.style.display = 'flex';
 }
 
 function fecharPopupCarta() {
