@@ -554,7 +554,7 @@ body {
 .card-menu {
     position: absolute;
     background-color: #222;
-    border: 2px solid gold;
+    border: 2px solid rgb(255, 81, 0);
     border-radius: 12px;
     padding: 8px;
     display: flex;
@@ -566,7 +566,7 @@ body {
 
 .card-menu button {
     padding: 6px 10px;
-    background-color: #ff9800;
+    background-color: #ff5e00;
     color: white;
     border: none;
     border-radius: 8px;
@@ -576,7 +576,7 @@ body {
 }
 
 .card-menu button:hover:enabled {
-    background-color: #f57c00;
+    background-color: #ff5e00;
 }
 
 .card-menu .botao-desativado {
