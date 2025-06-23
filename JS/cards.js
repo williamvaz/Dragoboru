@@ -1,5 +1,4 @@
 // ================== INICIALIZAÇÃO ==================
-
 window.addEventListener('DOMContentLoaded', async () => {
     await carregarPersonagens();
     await carregarClasses();
@@ -11,7 +10,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ================== VARIÁVEIS ==================
-
 let personagens = [];
 const deck = [];
 let cartasLevel = [];
@@ -20,6 +18,7 @@ let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
 let ordenacao = 'id';
+let cartaSelecionada = null;
 
 // ================== FUNÇÕES ==================
 
@@ -40,7 +39,6 @@ async function carregarXP() {
     const levels = await response.json();
 
     const xpAtual = parseInt(localStorage.getItem('xp')) || 0;
-
     let nivelAtual = 1;
     let xpBase = 0;
     let xpProximo = 0;
@@ -101,7 +99,6 @@ function nivelInicialPorRaridade(raridade) {
 }
 
 function calcularCartasNecessarias(nivel, raridade) {
-    const nivelBase = nivelInicialPorRaridade(raridade);
     const dados = cartasLevel.find(n => n.Nivel === nivel);
     return dados ? dados.Cartas : 999;
 }
@@ -251,10 +248,39 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
+        card.onclick = () => abrirPopupCarta(carta, desbloqueado);
 
         container.appendChild(card);
     });
+}
+
+// ================== POPUP DE CARTA ==================
+
+function abrirPopupCarta(carta, desbloqueado) {
+    cartaSelecionada = { ...carta, desbloqueado };
+    const popup = document.getElementById('popup-carta');
+    popup.style.display = 'flex';
+}
+
+function fecharPopupCarta() {
+    document.getElementById('popup-carta').style.display = 'none';
+}
+
+function usarCarta() {
+    if (!cartaSelecionada.desbloqueado) return;
+
+    if (deck.length < 8) {
+        deck.push(cartaSelecionada);
+        gerarDeck();
+        salvarDeck();
+        fecharPopupCarta();
+    } else {
+        mostrarPopupAviso('Deck cheio!');
+    }
+}
+
+function detalhesCarta() {
+    alert(`Mostrando detalhes da carta: ${cartaSelecionada["Nome Completo"]}`);
 }
 
 // ================== RARIDADE ==================
@@ -267,29 +293,6 @@ function corPorRaridade(r) {
         case 'Ultra Raro': return '#FFD700';
         case 'Lendario': return '#FF00FF';
         default: return 'white';
-    }
-}
-
-// ================== DECK ==================
-
-function mostrarPopupAviso(mensagem) {
-    document.getElementById('popup-aviso-message').innerText = mensagem;
-    document.getElementById('popup-aviso').style.display = 'flex';
-}
-
-function fecharPopupAviso() {
-    document.getElementById('popup-aviso').style.display = 'none';
-}
-
-function adicionarNoDeck(carta, desbloqueado) {
-    if (!desbloqueado) return;
-
-    if (deck.length < 8) {
-        deck.push(carta);
-        gerarDeck();
-        salvarDeck();
-    } else {
-        mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
 
@@ -333,4 +336,3 @@ function ordenarPor(tipo) {
     ordenacao = tipo;
     gerarCards();
 }
-
