@@ -589,29 +589,97 @@ body {
 }
 
 /* 🔥 POPUP DETALHES */
-/* ==== POPUP DETALHES ==== */
 .popup-detalhes {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.85);
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.8);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 999;
 }
 
 .popup-detalhes-content {
     background-color: #222;
-    border: 4px solid #FFD700;
-    border-radius: 16px;
-    padding: 20px;
+    border: 4px solid gold;
+    border-radius: 12px;
     display: flex;
+    flex-wrap: wrap;
+    padding: 16px;
     gap: 20px;
-    position: relative;
-    box-shadow: 0 0 20px black;
+    max-width: 95vw;
+    max-height: 90vh;
+}
+
+.popup-detalhes-esquerda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-detalhes-img {
+    width: 180px;
+    border-radius: 10px;
+}
+
+.popup-detalhes-nome {
+    background: white;
+    color: black;
+    margin-top: 8px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.popup-detalhes-direita {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.popup-detalhes-logo {
+    width: 120px;
+    align-self: center;
+}
+
+.stat-box {
+    background: white;
+    border-radius: 8px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.stat-box img {
+    width: 24px;
+}
+
+.popup-detalhes-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.popup-detalhes-buttons button {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.popup-detalhes-buttons .disabled {
+    background: grey;
+    cursor: not-allowed;
+}
+
+.popup-detalhes-buttons button:not(.disabled) {
+    background: orange;
+    color: white;
 }
 
 .fechar-btn {
@@ -622,55 +690,8 @@ body {
     color: white;
     border: none;
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
+    font-weight: bold;
     cursor: pointer;
-    font-weight: bold;
-}
-
-.popup-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.popup-detalhes-img {
-    width: 180px;
-    border-radius: 12px;
-}
-
-.popup-detalhes-nome {
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 6px;
-    margin-top: 10px;
-    text-align: center;
-}
-
-.popup-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.popup-logo {
-    width: 120px;
-}
-
-.stat-box {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-weight: bold;
-    gap: 8px;
-}
-
-.stat-box img {
-    width: 24px;
-    height: 24px;
 }

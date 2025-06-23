@@ -152,47 +152,68 @@ function carregarDeck() {
 let cartaSelecionada = null;
 
 function abrirPopupDetalhes(carta) {
-    const dados = JSON.parse(localStorage.getItem('cartas'))[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-
-    cartaSelecionada = carta;
-
-    document.getElementById('popup-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-logo').src = `Logos/${carta.Saga}.png`;
-
-    document.getElementById('popup-custo').innerText = `Custo: ${carta.CUSTO}`;
-    document.getElementById('popup-hp').innerText = `HP: ${carta.HP}`;
-    document.getElementById('popup-atk').innerText = `ATK: ${carta.ATK}`;
-
-    const btnAcao = document.getElementById('btn-acao');
-    const noDeck = deck.find(c => c["nº"] === carta["nº"]);
-
-    btnAcao.innerText = noDeck ? 'Remover' : 'Usar';
-    btnAcao.onclick = () => {
-        if (noDeck) {
-            const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-            deck.splice(index, 1);
-        } else {
-            if (deck.length < 8) {
-                deck.push(carta);
-            } else {
-                mostrarPopupAviso('Deck cheio!');
-            }
-        }
-        gerarDeck();
-        fecharPopupDetalhes();
-    };
+    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
+    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+    const desbloqueado = dados.quantidade > 0;
 
     document.getElementById('popup-detalhes').style.display = 'flex';
+    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
+    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
+    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
+    document.getElementById('popup-detalhes-custo').innerText = carta.CUSTO;
+    document.getElementById('popup-detalhes-hp').innerText = carta.HP;
+    document.getElementById('popup-detalhes-atk').innerText = carta.ATK;
+
+    // Usar
+    const btnUsar = document.getElementById('popup-detalhes-usar');
+    const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+    if (desbloqueado) {
+        btnUsar.disabled = false;
+        btnUsar.classList.remove('disabled');
+        btnUsar.innerText = noDeck ? 'Remover' : 'Usar';
+        btnUsar.onclick = () => {
+            if (noDeck) {
+                const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+                deck.splice(index, 1);
+            } else {
+                if (deck.length < 8) {
+                    deck.push(carta);
+                } else {
+                    mostrarPopupAviso('Deck cheio!');
+                }
+            }
+            gerarDeck();
+            fecharPopupDetalhes();
+        };
+    } else {
+        btnUsar.disabled = true;
+        btnUsar.classList.add('disabled');
+        btnUsar.innerText = 'Usar';
+    }
+
+    // Evoluir
+    const btnEvoluir = document.getElementById('popup-detalhes-evoluir');
+    const qtdNecessaria = calcularCartasNecessarias(dados.nivel, carta.Raridade);
+    const podeEvoluir = dados.quantidade >= qtdNecessaria && dados.nivel < 10;
+
+    if (podeEvoluir) {
+        btnEvoluir.disabled = false;
+        btnEvoluir.classList.remove('disabled');
+        btnEvoluir.onclick = () => {
+            dados.quantidade -= qtdNecessaria;
+            dados.nivel += 1;
+            localStorage.setItem('cartas', JSON.stringify(cartasSalvas));
+            gerarCards();
+            fecharPopupDetalhes();
+        };
+    } else {
+        btnEvoluir.disabled = true;
+        btnEvoluir.classList.add('disabled');
+    }
 }
 
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
-}
-
-function evoluirCartaSelecionada() {
-    alert(`Evoluir ${cartaSelecionada["Nome Completo"]}`);
-    // Aqui depois colocamos a lógica de evolução
 }
 
 // ================== GERAR CARDS ==================

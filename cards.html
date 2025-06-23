@@ -157,23 +157,36 @@
 <!-- POPUP DE DETALHES -->
 <div id="popup-detalhes" class="popup-detalhes" style="display: none;">
     <div class="popup-detalhes-content">
-        <button class="fechar-btn" onclick="fecharPopupDetalhes()">❌</button>
+        <button class="fechar-btn" onclick="fecharPopupDetalhes()">X</button>
 
-        <div class="popup-left">
+        <div class="popup-detalhes-esquerda">
             <img id="popup-detalhes-img" class="popup-detalhes-img" src="" alt="Carta">
-            <div id="popup-detalhes-nome" class="popup-detalhes-nome"></div>
+            <div class="popup-detalhes-nome" id="popup-detalhes-nome">Nome</div>
         </div>
 
-        <div class="popup-right">
-            <img id="popup-detalhes-logo" class="popup-logo" src="" alt="Logo">
-            <div class="stat-box"><img src="assets/CUSTO.png"><span id="popup-detalhes-custo"></span></div>
-            <div class="stat-box"><img src="assets/HP.png"><span id="popup-detalhes-hp"></span></div>
-            <div class="stat-box"><img src="assets/DANO.png"><span id="popup-detalhes-atk"></span></div>
+        <div class="popup-detalhes-direita">
+            <img id="popup-detalhes-logo" class="popup-detalhes-logo" src="" alt="Logo">
+
+            <div class="stat-box">
+                <img src="assets/CUSTO.png" alt="Custo">
+                <span id="popup-detalhes-custo"></span>
+            </div>
+            <div class="stat-box">
+                <img src="assets/HP.png" alt="HP">
+                <span id="popup-detalhes-hp"></span>
+            </div>
+            <div class="stat-box">
+                <img src="assets/DANO.png" alt="ATK">
+                <span id="popup-detalhes-atk"></span>
+            </div>
+
+            <div class="popup-detalhes-buttons">
+                <button id="popup-detalhes-evoluir">Evoluir</button>
+                <button id="popup-detalhes-usar">Usar</button>
+            </div>
         </div>
     </div>
 </div>
-
-
 
 </body>
 </html>
