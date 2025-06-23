@@ -250,7 +250,7 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
+        card.onclick = () => abrirPopupCarta(carta, desbloqueado);
 
         container.appendChild(card);
     });
