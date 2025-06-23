@@ -18,7 +18,6 @@ let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
 let ordenacao = 'id';
-let cartaSelecionada = null;
 
 // ================== FUNÇÕES ==================
 
@@ -248,38 +247,10 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = () => abrirPopupCarta(carta, desbloqueado);
+        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
 
         container.appendChild(card);
     });
-}
-
-// ================== POPUP DE CARTA ==================
-
-function abrirPopupCarta(carta, desbloqueado) {
-    cartaSelecionada = { ...carta, desbloqueado };
-    document.getElementById('popup-carta').style.display = 'flex';
-}
-
-function fecharPopupCarta() {
-    document.getElementById('popup-carta').style.display = 'none';
-}
-
-function usarCarta() {
-    if (!cartaSelecionada.desbloqueado) return;
-
-    if (deck.length < 8) {
-        deck.push(cartaSelecionada);
-        gerarDeck();
-        salvarDeck();
-        fecharPopupCarta();
-    } else {
-        mostrarPopupAviso('Deck cheio!');
-    }
-}
-
-function detalhesCarta() {
-    alert(`Mostrando detalhes da carta: ${cartaSelecionada["Nome Completo"]}`);
 }
 
 // ================== RARIDADE ==================
@@ -292,6 +263,29 @@ function corPorRaridade(r) {
         case 'Ultra Raro': return '#FFD700';
         case 'Lendario': return '#FF00FF';
         default: return 'white';
+    }
+}
+
+// ================== DECK ==================
+
+function mostrarPopupAviso(mensagem) {
+    document.getElementById('popup-aviso-message').innerText = mensagem;
+    document.getElementById('popup-aviso').style.display = 'flex';
+}
+
+function fecharPopupAviso() {
+    document.getElementById('popup-aviso').style.display = 'none';
+}
+
+function adicionarNoDeck(carta, desbloqueado) {
+    if (!desbloqueado) return;
+
+    if (deck.length < 8) {
+        deck.push(carta);
+        gerarDeck();
+        salvarDeck();
+    } else {
+        mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
 
