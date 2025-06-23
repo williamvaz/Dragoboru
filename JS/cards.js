@@ -219,7 +219,7 @@ function gerarCards() {
             overlayText.innerText = buscarClasse(carta.HP);
         } else if (ordenacao === 'nivel') {
             overlayImg.src = 'assets/NIVEL.png';
-            overlayText.innerText = `Nvl ${dados.nivel}`;
+            overlayText.innerText = `${dados.nivel}`;
         } else {
             overlayImg.src = 'assets/CUSTO.png';
             overlayText.innerText = carta.CUSTO;
