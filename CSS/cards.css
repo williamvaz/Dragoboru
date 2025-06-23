@@ -307,42 +307,73 @@ body {
     display: none;
     position: absolute;
     background-color: rgba(0,0,0,0.95);
-    min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
     border-radius: 8px;
     z-index: 1000;
     padding: 6px;
+}
+
+/* 🔥 Dropdown de saga (com logos) */
+#saga-dropdown {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
+    min-width: 160px;
 }
 
-.dropdown-content div {
+#saga-dropdown div {
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 6px;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#saga-dropdown div:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#saga-dropdown img.logo-saga {
+    width: 60px;
+    height: auto;
+}
+
+/* 🔥 Primeira opção (Todas) mantém texto */
+#saga-dropdown div:first-child {
+    grid-column: span 2;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-family: 'Clash', sans-serif;
+    padding: 8px;
+}
+
+/* 🔥 Dropdowns comuns (Texto) */
+.dropdown-content:not(#saga-dropdown) {
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dropdown-content:not(#saga-dropdown) div {
     color: white;
     padding: 6px 8px;
     cursor: pointer;
     border-radius: 6px;
     background-color: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    gap: 8px;
     font-weight: bold;
     transition: background-color 0.2s;
 }
 
-.dropdown-content div:hover {
+.dropdown-content:not(#saga-dropdown) div:hover {
     background-color: rgba(255,255,255,0.1);
 }
 
-.dropdown-content img {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
-    pointer-events: none;
-}
-
 .show {
-    display: grid;
+    display: grid !important;
 }
 
 /* ===== ÁREA DE CARDS ===== */

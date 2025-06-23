@@ -280,11 +280,13 @@ function toggleDropdown(id) {
 }
 
 window.addEventListener('click', function(event) {
-    const isDropdownButton = event.target.closest('.dropdown');
-    if (!isDropdownButton) {
-        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
+    const isDropdownButton = event.target.matches('.dropdown button');
+    const isInsideDropdown = event.target.closest('.dropdown-content');
+
+    if (!isDropdownButton && !isInsideDropdown) {        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
     }
 });
+
 
 
 // ================== FILTROS E ORDENAÇÃO ==================
