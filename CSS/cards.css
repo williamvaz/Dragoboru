@@ -372,10 +372,6 @@ body {
     background-color: rgba(255,255,255,0.1);
 }
 
-.show {
-    display: grid !important;
-}
-
 /* ===== ÁREA DE CARDS ===== */
 .cards-container {
     padding: 10px 16px;

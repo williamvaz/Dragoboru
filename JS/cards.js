@@ -265,23 +265,24 @@ function adicionarNoDeck(carta, desbloqueado) {
 
 function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
-    const isOpen = dropdown.classList.contains('show');
+    const isOpen = dropdown.style.display === 'block';
 
-    document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
+    // Fecha todos os dropdowns
+    document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
 
+    // Se não estava aberto, abre
     if (!isOpen) {
-        dropdown.classList.add('show');
+        dropdown.style.display = 'block';
     }
 }
 
+// Fecha dropdowns ao clicar fora
 window.addEventListener('click', function(event) {
-    const isButton = event.target.closest('.dropdown');
-    const isInsideDropdown = event.target.closest('.dropdown-content');
-
-    if (!isButton && !isInsideDropdown) {
-        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
+    if (!event.target.matches('.dropdown button')) {
+        document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
     }
 });
+
 
 // ================== FILTROS E ORDENAÇÃO ==================
 
