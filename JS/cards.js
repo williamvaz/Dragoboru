@@ -13,11 +13,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 let personagens = [];
 const deck = [];
-let cartasLevel = []; // 🔥 Vai carregar cartas.json
+let cartasLevel = [];
 let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
-let filtroStatus = 'todos'; // todos | desbloqueados | bloqueados
-let ordenacao = 'id'; // id | nome | nivel | hp | atk | custo
+let filtroStatus = 'todos';
+let ordenacao = 'id';
 
 
 // ================== FUNÇÕES ==================
@@ -72,7 +72,6 @@ async function carregarPersonagens() {
     const cartasResponse = await fetch('JSON/cartas.json');
     cartasLevel = await cartasResponse.json();
 
-    // 🔥 Se não existe localStorage de cartas, criar
     if (!localStorage.getItem('cartas')) {
         const cartas = {};
         personagens.forEach(p => {
@@ -97,9 +96,7 @@ function nivelInicialPorRaridade(raridade) {
 
 function calcularCartasNecessarias(nivel, raridade) {
     const nivelBase = nivelInicialPorRaridade(raridade);
-
     if (nivel === nivelBase) {
-        // Sempre usa o requisito de nível 1
         const dadosBase = cartasLevel.find(n => n.Nivel === 1);
         return dadosBase ? dadosBase.Cartas : 999;
     } else {
@@ -107,7 +104,6 @@ function calcularCartasNecessarias(nivel, raridade) {
         return dados ? dados.Cartas : 999;
     }
 }
-
 
 // ================== DECK ==================
 
@@ -155,7 +151,7 @@ function gerarCards() {
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     let lista = personagens.slice();
 
-    // 🔥 Filtros
+    // Filtros
     lista = lista.filter(carta => {
         const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
         const desbloqueado = dados.quantidade > 0;
@@ -167,7 +163,7 @@ function gerarCards() {
         return true;
     });
 
-    // 🔥 Ordenação
+    // Ordenação
     lista.sort((a, b) => {
         const dadosA = cartasSalvas[a["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(a.Raridade) };
         const dadosB = cartasSalvas[b["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(b.Raridade) };
@@ -183,7 +179,7 @@ function gerarCards() {
         }
     });
 
-    // 🔥 Renderização
+    // Renderização
     lista.forEach(carta => {
         const card = document.createElement('div');
         card.className = 'card-item';
@@ -202,7 +198,7 @@ function gerarCards() {
         borda.style.borderColor = corRaridade;
         card.appendChild(borda);
 
-        // 🔥 Label de Nível ou Bloqueado
+        // Label de nível ou bloqueado
         const nivelLabel = document.createElement('div');
         nivelLabel.className = 'card-nivel';
         nivelLabel.innerText = desbloqueado ? `Nível ${dados.nivel}` : 'Bloqueado';
@@ -247,18 +243,7 @@ function corPorRaridade(r) {
     }
 }
 
-function nivelInicialPorRaridade(raridade) {
-    switch (raridade) {
-        case 'Normal': return 1;
-        case 'Raro': return 3;
-        case 'Super Raro': return 5;
-        case 'Ultra Raro': return 7;
-        case 'Lendario': return 9;
-        default: return 1;
-    }
-}
-
-// ================== ADICIONAR NO DECK ==================
+// ================== DECK ==================
 
 function mostrarPopupAviso(mensagem) {
     document.getElementById('popup-aviso-message').innerText = mensagem;
@@ -281,8 +266,17 @@ function adicionarNoDeck(carta, desbloqueado) {
     }
 }
 
+// ================== DROPDOWN ==================
+
 function toggleDropdown(id) {
-    document.getElementById(id).classList.toggle("show");
+    const dropdown = document.getElementById(id);
+    const isOpen = dropdown.classList.contains('show');
+
+    document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
+
+    if (!isOpen) {
+        dropdown.classList.add('show');
+    }
 }
 
 window.addEventListener('click', function(event) {
@@ -290,12 +284,12 @@ window.addEventListener('click', function(event) {
     const isInsideDropdown = event.target.closest('.dropdown-content');
 
     if (!isDropdownButton && !isInsideDropdown) {
-        const dropdowns = document.querySelectorAll('.dropdown-content');
-        dropdowns.forEach(d => d.classList.remove('show'));
+        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
     }
 });
 
 // ================== FILTROS E ORDENAÇÃO ==================
+
 function filtrarPorRaridade(raridade) {
     filtroRaridade = raridade;
     gerarCards();
