@@ -521,3 +521,25 @@ body {
     pointer-events: none;
 }
 
+/* ===== SOBREPOSIÇÃO DE INFO NAS CARTAS ===== */
+.card-overlay {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2px 6px;
+    border-radius: 8px;
+}
+
+.card-overlay img {
+    height: 14px;
+}
+
+.card-overlay span {
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+}

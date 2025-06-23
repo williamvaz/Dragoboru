@@ -2,6 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', async () => {
     await carregarPersonagens();
+    await carregarClasses();
     carregarDeck();
     atualizarRecursos();
     carregarXP();
@@ -14,6 +15,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 let personagens = [];
 const deck = [];
 let cartasLevel = [];
+let classeStats = [];
 let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
@@ -62,7 +64,7 @@ async function carregarXP() {
     document.getElementById('xp-bar-text').innerText = `${xpAtualNoNivel} / ${xpParaProximo}`;
 }
 
-// ================== PERSONAGENS ==================
+// ================== CARREGAMENTO ==================
 
 async function carregarPersonagens() {
     const response = await fetch('JSON/personagens.json');
@@ -79,6 +81,11 @@ async function carregarPersonagens() {
         });
         localStorage.setItem('cartas', JSON.stringify(cartas));
     }
+}
+
+async function carregarClasses() {
+    const response = await fetch('JSON/classe.json');
+    classeStats = await response.json();
 }
 
 // ================== FUNÇÕES DE CARTAS ==================
@@ -102,6 +109,11 @@ function calcularCartasNecessarias(nivel, raridade) {
         const dados = cartasLevel.find(n => n.Nivel === nivel);
         return dados ? dados.Cartas : 999;
     }
+}
+
+function buscarClasse(valor) {
+    const classe = classeStats.find(c => valor >= c.ValorMin && valor <= c.ValorMax);
+    return classe ? classe.Classe : '?';
 }
 
 // ================== DECK ==================
@@ -200,6 +212,31 @@ function gerarCards() {
         nivelLabel.style.color = corRaridade;
         card.appendChild(nivelLabel);
 
+        // 🔥 Sobreposição de Info
+        const overlay = document.createElement('div');
+        overlay.className = 'card-overlay';
+
+        const overlayImg = document.createElement('img');
+        const overlayText = document.createElement('span');
+
+        if (ordenacao === 'atk') {
+            overlayImg.src = 'assets/DANO.png';
+            overlayText.innerText = buscarClasse(carta.ATK);
+        } else if (ordenacao === 'hp') {
+            overlayImg.src = 'assets/HP.png';
+            overlayText.innerText = buscarClasse(carta.HP);
+        } else if (ordenacao === 'nivel') {
+            overlayImg.src = 'assets/NIVEL.png';
+            overlayText.innerText = `Nvl ${dados.nivel}`;
+        } else {
+            overlayImg.src = 'assets/CUSTO.png';
+            overlayText.innerText = carta.CUSTO;
+        }
+
+        overlay.appendChild(overlayImg);
+        overlay.appendChild(overlayText);
+        card.appendChild(overlay);
+
         const qtdAtual = dados.quantidade;
         const qtdNecessaria = calcularCartasNecessarias(dados.nivel, carta.Raridade);
         const porcentagem = Math.min((qtdAtual / qtdNecessaria) * 100, 100);
@@ -267,22 +304,18 @@ function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
     const isOpen = dropdown.style.display === 'block';
 
-    // Fecha todos os dropdowns
     document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
 
-    // Se não estava aberto, abre
     if (!isOpen) {
         dropdown.style.display = 'block';
     }
 }
 
-// Fecha dropdowns ao clicar fora
 window.addEventListener('click', function(event) {
     if (!event.target.matches('.dropdown button')) {
         document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
     }
 });
-
 
 // ================== FILTROS E ORDENAÇÃO ==================
 
