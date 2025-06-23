@@ -1,0 +1,50 @@
+[
+  {
+    "Ataque": "ATK 1",
+    "Normal": "0,7",
+    "Raro": "0,5",
+    "Super Raro": "0,2",
+    "Ultra Raro": "0,3",
+    "Lendario": "0,1"
+  },
+  {
+    "Ataque": "ATK 2",
+    "Normal": "0,8",
+    "Raro": "0,7",
+    "Super Raro": "0,5",
+    "Ultra Raro": "0,5",
+    "Lendario": "0,2"
+  },
+  {
+    "Ataque": "ATK 3",
+    "Normal": "0,9",
+    "Raro": "0,9",
+    "Super Raro": "0,8",
+    "Ultra Raro": "0,8",
+    "Lendario": "0,7"
+  },
+  {
+    "Ataque": "ATK 4",
+    "Normal": "1,1",
+    "Raro": "1,1",
+    "Super Raro": "1,2",
+    "Ultra Raro": "1,0",
+    "Lendario": "1,0"
+  },
+  {
+    "Ataque": "ATK 5",
+    "Normal": "1,2",
+    "Raro": "1,3",
+    "Super Raro": "1,5",
+    "Ultra Raro": "1,5",
+    "Lendario": "1,5"
+  },
+  {
+    "Ataque": "ATK 6",
+    "Normal": "1,3",
+    "Raro": "1,5",
+    "Super Raro": "1,8",
+    "Ultra Raro": "2,0",
+    "Lendario": "2,5"
+  }
+]

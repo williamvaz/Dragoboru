@@ -623,9 +623,11 @@ body {
 }
 
 .popup-detalhes-img {
-    width: 160px;
+    width: 150px;
+    max-width: 42vw;
     border-radius: 10px;
 }
+
 
 .popup-detalhes-nome {
     color: white;
@@ -638,28 +640,30 @@ body {
 .popup-detalhes-direita {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    justify-content: space-between;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
     min-width: 160px;
+    max-width: 45vw;
 }
 
 .popup-detalhes-logo {
-    width: 120px;
-    align-self: center;
+    width: 100px;
 }
 
 .stat-box {
     background: rgba(0,0,0,0.7);
     border-radius: 8px;
-    padding: 4px 8px;
+    padding: 6px 16px;
     display: flex;
     align-items: center;
     gap: 8px;
     justify-content: center;
+    width: 100px;
 }
 
 .stat-box img {
-    width: 24px;
+    width: 22px;
 }
 
 .popup-detalhes-buttons {
