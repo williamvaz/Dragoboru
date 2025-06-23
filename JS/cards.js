@@ -301,6 +301,56 @@ function adicionarNoDeck(carta, desbloqueado) {
     }
 }
 
+// ================== POPUP CARTA ==================
+
+function abrirPopupCarta(carta, desbloqueado) {
+    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
+    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+    const estaNoDeck = deck.find(p => p["nº"] == carta["nº"]);
+
+    const popup = document.getElementById('popup-carta');
+    const img = document.getElementById('popup-carta-img');
+    const nome = document.getElementById('popup-carta-nome');
+    const botaoUsar = document.getElementById('popup-carta-usar');
+
+    img.src = `Cards/Slide${carta["nº"]}.webp`;
+    nome.innerText = carta["Nome Completo"];
+
+    if (!desbloqueado) {
+        botaoUsar.style.display = 'none';
+    } else {
+        botaoUsar.style.display = 'block';
+        botaoUsar.innerText = estaNoDeck ? 'Remover' : 'Usar';
+        botaoUsar.onclick = () => {
+            if (estaNoDeck) {
+                const index = deck.findIndex(p => p["nº"] == carta["nº"]);
+                if (index !== -1) {
+                    deck.splice(index, 1);
+                }
+            } else {
+                if (deck.length < 8) {
+                    deck.push(carta);
+                } else {
+                    mostrarPopupAviso('Deck cheio!');
+                }
+            }
+            salvarDeck();
+            gerarDeck();
+            fecharPopupCarta();
+        };
+    }
+
+    document.getElementById('popup-carta-detalhes').onclick = () => {
+        alert('Detalhes em construção...');
+    };
+
+    popup.style.display = 'flex';
+}
+
+function fecharPopupCarta() {
+    document.getElementById('popup-carta').style.display = 'none';
+}
+
 // ================== DROPDOWN ==================
 
 function toggleDropdown(id) {
