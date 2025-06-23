@@ -507,6 +507,7 @@ body {
 
 /* ===== NÍVEL DA CARTA ===== */
 .card-nivel {
+    white-space: nowrap;
     position: absolute;
     bottom: 24px;
     left: 50%;
