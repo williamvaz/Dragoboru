@@ -548,3 +548,76 @@ body {
     text-shadow: 0 0 3px black;
     pointer-events: none;
 }
+
+/* ================== POPUP CARTA ================== */
+
+.popup-carta {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-carta-content {
+    background: #1a1a1a;
+    border: 3px solid gold;
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    position: relative;
+    width: 280px;
+}
+
+.popup-carta-fechar {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.popup-carta-img {
+    width: 150px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+
+.popup-carta-nome {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 0 0 4px black;
+}
+
+.popup-carta-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.popup-carta-buttons button {
+    background: #ff6a00;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.popup-carta-buttons button:hover {
+    background: #ff842a;
+}
