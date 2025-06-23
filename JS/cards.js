@@ -269,6 +269,15 @@ function corPorRaridade(r) {
     }
 }
 
+
+// ================== CLASSE (HP, ATK) ==================
+
+function buscarClasse(valor) {
+    const classe = classeStats.find(c => valor >= c.min && valor <= c.max);
+    return classe ? classe.Classe : '?';
+}
+
+
 // ================== DECK ==================
 
 function mostrarPopupAviso(mensagem) {
