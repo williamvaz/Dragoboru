@@ -250,7 +250,7 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = (e) => abrirMenuCarta(e, carta, desbloqueado);
+        card.onclick = (event) => abrirMenuCarta(event, carta, desbloqueado);
 
         container.appendChild(card);
     });
@@ -356,6 +356,7 @@ function abrirMenuCarta(event, carta, desbloqueado) {
     const menu = document.createElement('div');
     menu.className = 'card-menu';
 
+    // 🔍 Botão Detalhes
     const btnDetalhes = document.createElement('button');
     btnDetalhes.innerText = 'Detalhes';
     btnDetalhes.onclick = (e) => {
@@ -364,15 +365,17 @@ function abrirMenuCarta(event, carta, desbloqueado) {
     };
     menu.appendChild(btnDetalhes);
 
+    // 🔥 Botão Usar / Remover
+    const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+    const btnAcao = document.createElement('button');
+    btnAcao.innerText = noDeck ? 'Remover' : 'Usar';
+
     if (desbloqueado) {
-        const noDeck = deck.find(c => c["nº"] === carta["nº"]);
-        const btnAcao = document.createElement('button');
-        btnAcao.innerText = noDeck ? 'Remover' : 'Usar';
         btnAcao.onclick = (e) => {
             e.stopPropagation();
             if (noDeck) {
                 const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-                deck.splice(index, 1);
+                if (index > -1) deck.splice(index, 1);
             } else {
                 if (deck.length < 8) {
                     deck.push(carta);
@@ -381,14 +384,22 @@ function abrirMenuCarta(event, carta, desbloqueado) {
                 }
             }
             gerarDeck();
+            gerarCards();
             fecharMenuCarta();
         };
-        menu.appendChild(btnAcao);
+    } else {
+        btnAcao.disabled = true;
+        btnAcao.classList.add('botao-desativado');
     }
 
+    menu.appendChild(btnAcao);
+
     document.body.appendChild(menu);
-    menu.style.left = `${rect.left + window.scrollX}px`;
+
+    // 🔥 Posição do menu abaixo da carta
+    menu.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
     menu.style.top = `${rect.bottom + window.scrollY}px`;
+    menu.style.transform = 'translateX(-50%)';
 
     menuAberto = menu;
 
@@ -405,3 +416,4 @@ function fecharMenuCarta() {
 window.addEventListener('click', () => {
     fecharMenuCarta();
 });
+
