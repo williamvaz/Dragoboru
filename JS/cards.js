@@ -319,10 +319,14 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = (event) => {
-    event.stopPropagation();
-    abrirPopupDetalhes(carta);
+card.onclick = (event) => {
+    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
+    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+    const desbloqueado = dados.quantidade > 0;
+
+    abrirMenuCarta(event, carta, desbloqueado);
 };
+
 
         container.appendChild(card);
     });
