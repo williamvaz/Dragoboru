@@ -271,7 +271,6 @@ body {
     position: absolute;
 }
 
-
 /* ===== FILTROS ===== */
 .filtros-container {
     display: flex;
@@ -297,38 +296,54 @@ body {
     font-weight: bold;
     font-family: 'Clash', sans-serif;
     white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.dropdown button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: rgba(0,0,0,0.95);
-    min-width: 140px;
+    min-width: 180px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
     border-radius: 8px;
     z-index: 1000;
+    padding: 8px;
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 6px;
 }
 
 .dropdown-content div {
     color: white;
-    padding: 8px 14px;
+    padding: 6px 8px;
     cursor: pointer;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: bold;
-    line-height: 1.4em;
-    white-space: nowrap;
+    transition: background-color 0.2s;
 }
 
 .dropdown-content div:hover {
     background-color: rgba(255,255,255,0.1);
 }
 
-.dropdown-content div:last-child {
-    border-bottom: none;
+.dropdown-content img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    pointer-events: none;
 }
 
 .show {
-    display: block;
+    display: grid;
 }
 
 /* ===== ÁREA DE CARDS ===== */

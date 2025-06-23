@@ -285,14 +285,15 @@ function toggleDropdown(id) {
     document.getElementById(id).classList.toggle("show");
 }
 
-window.onclick = function(event) {
-    if (!event.target.matches('.dropdown button')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        for (let i = 0; i < dropdowns.length; i++) {
-            dropdowns[i].classList.remove('show');
-        }
+window.addEventListener('click', function(event) {
+    const isDropdownButton = event.target.matches('.dropdown button');
+    const isInsideDropdown = event.target.closest('.dropdown-content');
+
+    if (!isDropdownButton && !isInsideDropdown) {
+        const dropdowns = document.querySelectorAll('.dropdown-content');
+        dropdowns.forEach(d => d.classList.remove('show'));
     }
-}
+});
 
 // ================== FILTROS E ORDENAÇÃO ==================
 function filtrarPorRaridade(raridade) {
