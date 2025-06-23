@@ -408,13 +408,15 @@ function abrirMenuCarta(event, carta, desbloqueado) {
     menu.className = 'card-menu';
 
     // 🔹 Botão Detalhes
-    const btnDetalhes = document.createElement('button');
-    btnDetalhes.innerText = 'Detalhes';
-    btnDetalhes.onclick = (e) => {
-        e.stopPropagation();
-        alert(`Detalhes da carta ${carta["Nome Completo"]}`); // 🚧 Aqui entrará o popup de detalhes depois
-    };
-    menu.appendChild(btnDetalhes);
+const btnDetalhes = document.createElement('button');
+btnDetalhes.innerText = 'Detalhes';
+btnDetalhes.onclick = (e) => {
+    e.stopPropagation();
+    abrirPopupDetalhes(carta);
+    fecharMenuCarta();
+};
+menu.appendChild(btnDetalhes);
+
 
     // 🔸 Botão Usar/Remover (mesmo bloqueado aparece, mas desativado)
     const noDeck = deck.find(c => c["nº"] === carta["nº"]);
@@ -465,6 +467,22 @@ function fecharMenuCarta() {
         menuAberto = null;
     }
 }
+
+// 🔥 Popup
+function abrirPopupDetalhes(carta) {
+    document.getElementById('popup-detalhes').style.display = 'flex';
+    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
+    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
+    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
+    document.getElementById('popup-detalhes-custo').innerText = carta.CUSTO;
+    document.getElementById('popup-detalhes-hp').innerText = carta.HP;
+    document.getElementById('popup-detalhes-atk').innerText = carta.ATK;
+}
+
+function fecharPopupDetalhes() {
+    document.getElementById('popup-detalhes').style.display = 'none';
+}
+
 
 window.addEventListener('click', () => {
     fecharMenuCarta();

@@ -154,28 +154,25 @@
     <script src="JS/salvarcards.js"></script>
 
     <!-- 🔥 POPUP DETALHES DA CARTA -->
+<!-- POPUP DE DETALHES -->
 <div id="popup-detalhes" class="popup-detalhes" style="display: none;">
     <div class="popup-detalhes-content">
-        <button class="fechar-btn" onclick="fecharPopupDetalhes()">X</button>
-        
+        <button class="fechar-btn" onclick="fecharPopupDetalhes()">❌</button>
+
         <div class="popup-left">
-            <img id="popup-img" src="" alt="Card">
-            <div class="popup-nome" id="popup-nome"></div>
+            <img id="popup-detalhes-img" class="popup-detalhes-img" src="" alt="Carta">
+            <div id="popup-detalhes-nome" class="popup-detalhes-nome"></div>
         </div>
 
         <div class="popup-right">
-            <img id="popup-logo" class="popup-logo" src="" alt="Logo">
-            <div class="popup-info" id="popup-custo"></div>
-            <div class="popup-info" id="popup-hp"></div>
-            <div class="popup-info" id="popup-atk"></div>
-        </div>
-
-        <div class="popup-buttons">
-            <button onclick="evoluirCartaSelecionada()">Evoluir</button>
-            <button id="btn-acao" onclick="">Usar</button>
+            <img id="popup-detalhes-logo" class="popup-logo" src="" alt="Logo">
+            <div class="stat-box"><img src="assets/CUSTO.png"><span id="popup-detalhes-custo"></span></div>
+            <div class="stat-box"><img src="assets/HP.png"><span id="popup-detalhes-hp"></span></div>
+            <div class="stat-box"><img src="assets/DANO.png"><span id="popup-detalhes-atk"></span></div>
         </div>
     </div>
 </div>
+
 
 
 </body>
