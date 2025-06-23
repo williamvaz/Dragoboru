@@ -577,6 +577,26 @@ body {
     font-weight: bold;
 }
 
+/* 🔥 BOTÃO DE FECHAR */
+.popup-close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.popup-close:hover {
+    transform: scale(1.2);
+    color: red;
+}
+
+/* 🔥 BOTÕES */
 .popup-buttons {
     display: flex;
     justify-content: space-around;
@@ -586,7 +606,7 @@ body {
 .popup-buttons button {
     flex: 1;
     padding: 10px;
-    background-color: #f75830;
+    background-color: #fa3908;
     color: #000;
     border: none;
     border-radius: 12px;
@@ -605,4 +625,5 @@ body {
     transform: scale(1.05);
     filter: brightness(1.1);
 }
+
 
