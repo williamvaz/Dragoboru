@@ -102,13 +102,8 @@ function nivelInicialPorRaridade(raridade) {
 
 function calcularCartasNecessarias(nivel, raridade) {
     const nivelBase = nivelInicialPorRaridade(raridade);
-    if (nivel === nivelBase) {
-        const dadosBase = cartasLevel.find(n => n.Nivel === 1);
-        return dadosBase ? dadosBase.Cartas : 999;
-    } else {
-        const dados = cartasLevel.find(n => n.Nivel === nivel);
-        return dados ? dados.Cartas : 999;
-    }
+    const dados = cartasLevel.find(n => n.Nivel === nivel);
+    return dados ? dados.Cartas : 999;
 }
 
 function buscarClasse(valor) {
@@ -212,7 +207,7 @@ function gerarCards() {
         nivelLabel.style.color = corRaridade;
         card.appendChild(nivelLabel);
 
-        // 🔥 Sobreposição de Info
+        // 🔥 Sobreposição
         const overlay = document.createElement('div');
         overlay.className = 'card-overlay';
 
@@ -338,3 +333,4 @@ function ordenarPor(tipo) {
     ordenacao = tipo;
     gerarCards();
 }
+
