@@ -155,15 +155,24 @@
 
     <!-- 🔥 POPUP DETALHES DA CARTA -->
 <!-- POPUP DE DETALHES -->
+<!-- 🔥 POPUP DE DETALHES -->
 <div id="popup-detalhes" class="popup-detalhes" style="display: none;">
     <div class="popup-detalhes-content">
         <button class="fechar-btn" onclick="fecharPopupDetalhes()">X</button>
 
+        <!-- Esquerda (Imagem + Nome + Sobreposição) -->
         <div class="popup-detalhes-esquerda">
-            <img id="popup-detalhes-img" class="popup-detalhes-img" src="" alt="Carta">
+            <div class="popup-detalhes-img-container">
+                <img id="popup-detalhes-img" class="popup-detalhes-img" src="" alt="Carta">
+                <div class="card-overlay" id="popup-overlay">
+                    <img id="popup-overlay-img" src="" alt="">
+                    <span id="popup-overlay-text"></span>
+                </div>
+            </div>
             <div class="popup-detalhes-nome" id="popup-detalhes-nome">Nome</div>
         </div>
 
+        <!-- Direita (Infos) -->
         <div class="popup-detalhes-direita">
             <img id="popup-detalhes-logo" class="popup-detalhes-logo" src="" alt="Logo">
 
@@ -187,6 +196,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

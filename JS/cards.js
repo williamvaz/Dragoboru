@@ -210,6 +210,25 @@ function abrirPopupDetalhes(carta) {
         btnEvoluir.disabled = true;
         btnEvoluir.classList.add('disabled');
     }
+
+    // 🔥 Sobreposição no popup
+const overlayImg = document.getElementById('popup-overlay-img');
+const overlayText = document.getElementById('popup-overlay-text');
+
+if (ordenacao === 'atk') {
+    overlayImg.src = 'assets/DANO.png';
+    overlayText.innerText = buscarClasse(carta.ATK);
+} else if (ordenacao === 'hp') {
+    overlayImg.src = 'assets/HP.png';
+    overlayText.innerText = buscarClasse(carta.HP);
+} else if (ordenacao === 'nivel') {
+    overlayImg.src = 'assets/NIVEL.png';
+    overlayText.innerText = `${dados.nivel}`;
+} else {
+    overlayImg.src = 'assets/CUSTO.png';
+    overlayText.innerText = carta.CUSTO;
+}
+
 }
 
 function fecharPopupDetalhes() {
