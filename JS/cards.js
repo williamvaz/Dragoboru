@@ -250,7 +250,7 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = () => adicionarNoDeck(carta, desbloqueado);
+        card.onclick = (e) => abrirMenuCarta(e, carta, desbloqueado);
 
         container.appendChild(card);
     });
@@ -268,6 +268,15 @@ function corPorRaridade(r) {
         default: return 'white';
     }
 }
+
+
+// ================== CLASSE (HP, ATK) ==================
+
+function buscarClasse(valor) {
+    const classe = classeStats.find(c => valor >= c.min && valor <= c.max);
+    return classe ? classe.Classe : '?';
+}
+
 
 // ================== DECK ==================
 
@@ -291,6 +300,7 @@ function adicionarNoDeck(carta, desbloqueado) {
         mostrarPopupAviso('Deck cheio! Clique em uma carta do deck para remover.');
     }
 }
+
 
 // ================== DROPDOWN ==================
 
@@ -332,3 +342,66 @@ function ordenarPor(tipo) {
     ordenacao = tipo;
     gerarCards();
 }
+
+// ================== INFORMAÇÕES ==================
+
+let menuAberto = null;
+
+function abrirMenuCarta(event, carta, desbloqueado) {
+    fecharMenuCarta();
+
+    const cardElement = event.currentTarget;
+    const rect = cardElement.getBoundingClientRect();
+
+    const menu = document.createElement('div');
+    menu.className = 'card-menu';
+
+    const btnDetalhes = document.createElement('button');
+    btnDetalhes.innerText = 'Detalhes';
+    btnDetalhes.onclick = (e) => {
+        e.stopPropagation();
+        alert(`Detalhes da carta ${carta["Nome Completo"]}`);
+    };
+    menu.appendChild(btnDetalhes);
+
+    if (desbloqueado) {
+        const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+        const btnAcao = document.createElement('button');
+        btnAcao.innerText = noDeck ? 'Remover' : 'Usar';
+        btnAcao.onclick = (e) => {
+            e.stopPropagation();
+            if (noDeck) {
+                const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+                deck.splice(index, 1);
+            } else {
+                if (deck.length < 8) {
+                    deck.push(carta);
+                } else {
+                    mostrarPopupAviso('Deck cheio!');
+                }
+            }
+            gerarDeck();
+            fecharMenuCarta();
+        };
+        menu.appendChild(btnAcao);
+    }
+
+    document.body.appendChild(menu);
+    menu.style.left = `${rect.left + window.scrollX}px`;
+    menu.style.top = `${rect.bottom + window.scrollY}px`;
+
+    menuAberto = menu;
+
+    event.stopPropagation();
+}
+
+function fecharMenuCarta() {
+    if (menuAberto) {
+        menuAberto.remove();
+        menuAberto = null;
+    }
+}
+
+window.addEventListener('click', () => {
+    fecharMenuCarta();
+});
