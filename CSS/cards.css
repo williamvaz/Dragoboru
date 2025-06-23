@@ -652,18 +652,26 @@ body {
 }
 
 .stat-box {
-    background: rgba(0,0,0,0.7);
-    border-radius: 8px;
-    padding: 6px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
+    position: relative;
     width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
 }
 
 .stat-box img {
-    width: 22px;
+    width: 100%;
+    height: auto;
+}
+
+.stat-box span {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 0 3px black;
 }
 
 .popup-detalhes-buttons {
