@@ -550,44 +550,41 @@ body {
     pointer-events: none;
 }
 
-/* ================== POPUP CARTA ================== */
-
-/* 🔥 Menu suspenso abaixo da carta */
+/* ================= MENU DE CARTA ================= */
 .card-menu {
     position: absolute;
-    bottom: -58px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.9);
-    border: 2px solid rgb(255, 102, 0);
-    border-radius: 8px;
-    padding: 5px;
+    background-color: #222;
+    border: 2px solid gold;
+    border-radius: 12px;
+    padding: 8px;
     display: flex;
+    flex-direction: column;
     gap: 6px;
-    z-index: 999;
-    width: max-content;
-    max-width: 90%;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
-/* Botões do menu */
 .card-menu button {
-    background-color: rgb(17, 75, 0);
-    border: none;
-    border-radius: 6px;
-    padding: 4px 8px;
+    padding: 6px 10px;
+    background-color: #ff9800;
     color: white;
+    border: none;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: 0.2s;
 }
 
-.card-menu button:hover {
-    background-color: #ff4800;
+.card-menu button:hover:enabled {
+    background-color: #f57c00;
 }
 
-/* 🔥 Botão desativado (quando a carta tá bloqueada) */
-.card-menu button.botao-desativado {
+.card-menu .botao-desativado {
     background-color: gray;
     cursor: not-allowed;
-    opacity: 0.7;
 }
+
+.card-menu button:disabled {
+    opacity: 0.6;
+}
+

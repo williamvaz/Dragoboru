@@ -250,7 +250,7 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = (event) => abrirMenuCarta(event, carta, desbloqueado);
+        card.onclick = (e) => abrirMenuCarta(e, carta, desbloqueado);
 
         container.appendChild(card);
     });
@@ -356,16 +356,16 @@ function abrirMenuCarta(event, carta, desbloqueado) {
     const menu = document.createElement('div');
     menu.className = 'card-menu';
 
-    // 🔍 Botão Detalhes
+    // 🔹 Botão Detalhes
     const btnDetalhes = document.createElement('button');
     btnDetalhes.innerText = 'Detalhes';
     btnDetalhes.onclick = (e) => {
         e.stopPropagation();
-        alert(`Detalhes da carta ${carta["Nome Completo"]}`);
+        alert(`Detalhes da carta ${carta["Nome Completo"]}`); // 🚧 Aqui entrará o popup de detalhes depois
     };
     menu.appendChild(btnDetalhes);
 
-    // 🔥 Botão Usar / Remover
+    // 🔸 Botão Usar/Remover (mesmo bloqueado aparece, mas desativado)
     const noDeck = deck.find(c => c["nº"] === carta["nº"]);
     const btnAcao = document.createElement('button');
     btnAcao.innerText = noDeck ? 'Remover' : 'Usar';
@@ -375,7 +375,7 @@ function abrirMenuCarta(event, carta, desbloqueado) {
             e.stopPropagation();
             if (noDeck) {
                 const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-                if (index > -1) deck.splice(index, 1);
+                deck.splice(index, 1);
             } else {
                 if (deck.length < 8) {
                     deck.push(carta);
@@ -384,7 +384,6 @@ function abrirMenuCarta(event, carta, desbloqueado) {
                 }
             }
             gerarDeck();
-            gerarCards();
             fecharMenuCarta();
         };
     } else {
@@ -396,10 +395,13 @@ function abrirMenuCarta(event, carta, desbloqueado) {
 
     document.body.appendChild(menu);
 
-    // 🔥 Posição do menu abaixo da carta
-    menu.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
-    menu.style.top = `${rect.bottom + window.scrollY}px`;
-    menu.style.transform = 'translateX(-50%)';
+    // 🔥 Calcula posição
+    const menuWidth = 120;
+    const left = rect.left + window.scrollX;
+    const top = rect.bottom + window.scrollY;
+
+    menu.style.left = `${Math.min(left, window.innerWidth - menuWidth - 10)}px`;
+    menu.style.top = `${top}px`;
 
     menuAberto = menu;
 
