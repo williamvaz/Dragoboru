@@ -147,6 +147,54 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
+// ================== POP UP COM DETALHES ==================
+
+let cartaSelecionada = null;
+
+function abrirPopupDetalhes(carta) {
+    const dados = JSON.parse(localStorage.getItem('cartas'))[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+
+    cartaSelecionada = carta;
+
+    document.getElementById('popup-img').src = `Cards/Slide${carta["nº"]}.webp`;
+    document.getElementById('popup-nome').innerText = carta["Nome Completo"];
+    document.getElementById('popup-logo').src = `Logos/${carta.Saga}.png`;
+
+    document.getElementById('popup-custo').innerText = `Custo: ${carta.CUSTO}`;
+    document.getElementById('popup-hp').innerText = `HP: ${carta.HP}`;
+    document.getElementById('popup-atk').innerText = `ATK: ${carta.ATK}`;
+
+    const btnAcao = document.getElementById('btn-acao');
+    const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+
+    btnAcao.innerText = noDeck ? 'Remover' : 'Usar';
+    btnAcao.onclick = () => {
+        if (noDeck) {
+            const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+            deck.splice(index, 1);
+        } else {
+            if (deck.length < 8) {
+                deck.push(carta);
+            } else {
+                mostrarPopupAviso('Deck cheio!');
+            }
+        }
+        gerarDeck();
+        fecharPopupDetalhes();
+    };
+
+    document.getElementById('popup-detalhes').style.display = 'flex';
+}
+
+function fecharPopupDetalhes() {
+    document.getElementById('popup-detalhes').style.display = 'none';
+}
+
+function evoluirCartaSelecionada() {
+    alert(`Evoluir ${cartaSelecionada["Nome Completo"]}`);
+    // Aqui depois colocamos a lógica de evolução
+}
+
 // ================== GERAR CARDS ==================
 
 function gerarCards() {
@@ -250,7 +298,10 @@ function gerarCards() {
         progressContainer.appendChild(progressText);
         card.appendChild(progressContainer);
 
-        card.onclick = (e) => abrirMenuCarta(e, carta, desbloqueado);
+        card.onclick = (event) => {
+    event.stopPropagation();
+    abrirPopupDetalhes(carta);
+};
 
         container.appendChild(card);
     });

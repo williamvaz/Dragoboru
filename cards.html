@@ -152,5 +152,31 @@
     <!-- SCRIPTS -->
     <script src="JS/cards.js"></script>
     <script src="JS/salvarcards.js"></script>
+
+    <!-- 🔥 POPUP DETALHES DA CARTA -->
+<div id="popup-detalhes" class="popup-detalhes" style="display: none;">
+    <div class="popup-detalhes-content">
+        <button class="fechar-btn" onclick="fecharPopupDetalhes()">X</button>
+        
+        <div class="popup-left">
+            <img id="popup-img" src="" alt="Card">
+            <div class="popup-nome" id="popup-nome"></div>
+        </div>
+
+        <div class="popup-right">
+            <img id="popup-logo" class="popup-logo" src="" alt="Logo">
+            <div class="popup-info" id="popup-custo"></div>
+            <div class="popup-info" id="popup-hp"></div>
+            <div class="popup-info" id="popup-atk"></div>
+        </div>
+
+        <div class="popup-buttons">
+            <button onclick="evoluirCartaSelecionada()">Evoluir</button>
+            <button id="btn-acao" onclick="">Usar</button>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
