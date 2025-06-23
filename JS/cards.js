@@ -19,7 +19,6 @@ let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
 let ordenacao = 'id';
 
-
 // ================== FUNÇÕES ==================
 
 // Navegação
@@ -142,7 +141,7 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
-// ================== CARDS ==================
+// ================== GERAR CARDS ==================
 
 function gerarCards() {
     const container = document.getElementById('cards-grid');
@@ -151,7 +150,6 @@ function gerarCards() {
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     let lista = personagens.slice();
 
-    // Filtros
     lista = lista.filter(carta => {
         const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
         const desbloqueado = dados.quantidade > 0;
@@ -163,7 +161,6 @@ function gerarCards() {
         return true;
     });
 
-    // Ordenação
     lista.sort((a, b) => {
         const dadosA = cartasSalvas[a["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(a.Raridade) };
         const dadosB = cartasSalvas[b["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(b.Raridade) };
@@ -179,7 +176,6 @@ function gerarCards() {
         }
     });
 
-    // Renderização
     lista.forEach(carta => {
         const card = document.createElement('div');
         card.className = 'card-item';
@@ -198,7 +194,6 @@ function gerarCards() {
         borda.style.borderColor = corRaridade;
         card.appendChild(borda);
 
-        // Label de nível ou bloqueado
         const nivelLabel = document.createElement('div');
         nivelLabel.className = 'card-nivel';
         nivelLabel.innerText = desbloqueado ? `Nível ${dados.nivel}` : 'Bloqueado';
@@ -272,20 +267,18 @@ function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
     const isOpen = dropdown.classList.contains('show');
 
-    // Fecha todos os dropdowns
     document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
 
-    // Se não estava aberto, abre
     if (!isOpen) {
         dropdown.classList.add('show');
     }
 }
 
-// 🔥 Evento global para fechar ao clicar fora
 window.addEventListener('click', function(event) {
-    const isDropdownButton = event.target.closest('.dropdown');
-    
-    if (!isDropdownButton) {
+    const isButton = event.target.closest('.dropdown');
+    const isInsideDropdown = event.target.closest('.dropdown-content');
+
+    if (!isButton && !isInsideDropdown) {
         document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
     }
 });
