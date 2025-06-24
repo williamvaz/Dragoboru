@@ -26,13 +26,6 @@ function goTo(page) {
     window.location.href = page;
 }
 
-// Info das cards
-async function carregarAtaques() {
-    const response = await fetch('JSON/ataques.json');
-    return await response.json();
-}
-
-
 // Recursos
 function atualizarRecursos() {
     document.getElementById('coin-amount').innerText = localStorage.getItem('coin') || 0;
@@ -194,27 +187,9 @@ async function abrirPopupDetalhes(carta) {
     document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
     document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
 
-    const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
-    statSpans[0].innerText = custo;
-    statSpans[1].innerText = hp;
-    statSpans[2].innerText = nivel;
-
-    const overlayImg = document.getElementById('popup-overlay-img');
-    const overlayText = document.getElementById('popup-overlay-text');
-
-    if (ordenacao === 'atk') {
-        overlayImg.src = 'assets/DANO.png';
-        overlayText.innerText = buscarClasse(carta.ATK);
-    } else if (ordenacao === 'hp') {
-        overlayImg.src = 'assets/HP.png';
-        overlayText.innerText = buscarClasse(carta.HP);
-    } else if (ordenacao === 'nivel') {
-        overlayImg.src = 'assets/NIVEL.png';
-        overlayText.innerText = `${nivel}`;
-    } else {
-        overlayImg.src = 'assets/CUSTO.png';
-        overlayText.innerText = custo;
-    }
+    document.getElementById('stat-hp').innerText = hp;
+    document.getElementById('stat-custo').innerText = custo;
+    document.getElementById('stat-nivel').innerText = nivel;
 
     ataques.forEach((atkObj, index) => {
         const mult = parseFloat(atkObj[raridade].replace(',', '.'));
@@ -222,7 +197,6 @@ async function abrirPopupDetalhes(carta) {
         document.getElementById(`atk-${index + 1}`).innerText = valor;
     });
 }
-
 
     // Usar
     const btnUsar = document.getElementById('popup-detalhes-usar');
@@ -553,6 +527,24 @@ function fecharMenuCarta() {
         menuAberto = null;
     }
 }
+
+// 🔥 Popup
+function abrirPopupDetalhes(carta) {
+    document.getElementById('popup-detalhes').style.display = 'flex';
+    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
+    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
+    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
+const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
+statSpans[0].innerText = carta.CUSTO;
+statSpans[1].innerText = carta.HP;
+statSpans[2].innerText = carta.ATK;
+
+}
+
+function fecharPopupDetalhes() {
+    document.getElementById('popup-detalhes').style.display = 'none';
+}
+
 
 window.addEventListener('click', () => {
     fecharMenuCarta();
