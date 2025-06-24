@@ -160,9 +160,11 @@ function abrirPopupDetalhes(carta) {
     document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
     document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
     document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-    document.getElementById('popup-detalhes-custo').innerText = carta.CUSTO;
-    document.getElementById('popup-detalhes-hp').innerText = carta.HP;
-    document.getElementById('popup-detalhes-atk').innerText = carta.ATK;
+const statBoxes = document.querySelectorAll('.stat-box span');
+statBoxes[0].innerText = carta.CUSTO;
+statBoxes[1].innerText = carta.HP;
+statBoxes[2].innerText = carta.ATK;
+
 
     // Usar
     const btnUsar = document.getElementById('popup-detalhes-usar');
