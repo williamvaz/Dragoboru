@@ -731,4 +731,29 @@ body {
     pointer-events: none;
 }
 
+/* 🔥 Ataques */
+.atk-table {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.atk-row {
+    display: flex;
+    gap: 8px;
+}
+
+.atk-cell {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
 
