@@ -18,7 +18,6 @@ let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
 let ordenacao = 'id';
-let menuAberto = null;
 
 // ================== FUNÇÕES ==================
 
@@ -170,7 +169,6 @@ async function abrirPopupDetalhes(carta) {
     const custo = carta.CUSTO;
     const hp = carta.HP;
 
-    // Setar imagem e informações
     document.getElementById('popup-detalhes').style.display = 'flex';
     document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
     document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
@@ -181,7 +179,7 @@ async function abrirPopupDetalhes(carta) {
     statSpans[1].innerText = hp;
     statSpans[2].innerText = nivel;
 
-    // Ataques
+    // 🔥 CARREGA ATAQUES
     const ataques = await carregarAtaques();
 
     ataques.forEach((atkObj, index) => {
@@ -190,10 +188,36 @@ async function abrirPopupDetalhes(carta) {
         document.getElementById(`atk-${index + 1}`).innerText = valor;
     });
 
-    // Controle do botão Usar/Remover
+    // 🔥 SOBREPOSIÇÃO NA CARTA (SE TIVER NO POPUP)
+    const overlayImg = document.getElementById('popup-overlay-img');
+    const overlayText = document.getElementById('popup-overlay-text');
+
+    if (overlayImg && overlayText) {
+        if (ordenacao === 'atk') {
+            overlayImg.src = 'assets/DANO.png';
+            overlayText.innerText = buscarClasse(atk);
+        } else if (ordenacao === 'hp') {
+            overlayImg.src = 'assets/HP.png';
+            overlayText.innerText = buscarClasse(hp);
+        } else if (ordenacao === 'nivel') {
+            overlayImg.src = 'assets/NIVEL.png';
+            overlayText.innerText = `${nivel}`;
+        } else {
+            overlayImg.src = 'assets/CUSTO.png';
+            overlayText.innerText = custo;
+        }
+    }
+}
+
+
+// ================== CARREGAR ATAQUES ==================
+async function carregarAtaques() {
+    const response = await fetch('JSON/ataques.json');
+    return await response.json();
+}
+        // Usar
     const btnUsar = document.getElementById('popup-detalhes-usar');
     const noDeck = deck.find(c => c["nº"] === carta["nº"]);
-
     if (desbloqueado) {
         btnUsar.disabled = false;
         btnUsar.classList.remove('disabled');
@@ -218,10 +242,10 @@ async function abrirPopupDetalhes(carta) {
         btnUsar.innerText = 'Usar';
     }
 
-    // Controle do botão Evoluir
+    // Evoluir
     const btnEvoluir = document.getElementById('popup-detalhes-evoluir');
-    const qtdNecessaria = calcularCartasNecessarias(nivel, carta.Raridade);
-    const podeEvoluir = dados.quantidade >= qtdNecessaria && nivel < 10;
+    const qtdNecessaria = calcularCartasNecessarias(dados.nivel, carta.Raridade);
+    const podeEvoluir = dados.quantidade >= qtdNecessaria && dados.nivel < 10;
 
     if (podeEvoluir) {
         btnEvoluir.disabled = false;
@@ -237,14 +261,6 @@ async function abrirPopupDetalhes(carta) {
         btnEvoluir.disabled = true;
         btnEvoluir.classList.add('disabled');
     }
-}
-
-// ================== CARREGAR ATAQUES ==================
-async function carregarAtaques() {
-    const response = await fetch('JSON/ataques.json');
-    return await response.json();
-}
-    
 
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
