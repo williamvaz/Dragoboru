@@ -154,24 +154,6 @@ function carregarDeck() {
     deck.push(...deckSalvo);
 }
 
-// ================== POP UP COM DETALHES ==================
-
-let cartaSelecionada = null;
-
-function abrirPopupDetalhes(carta) {
-    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-    const desbloqueado = dados.quantidade > 0;
-
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-const statBoxes = document.querySelectorAll('.stat-box span');
-statBoxes[0].innerText = carta.CUSTO;
-statBoxes[1].innerText = carta.HP;
-statBoxes[2].innerText = carta.ATK;
-
 // ================== CARREGAR ATAQUES ==================
 async function carregarAtaques() {
     const response = await fetch('JSON/ataques.json');
@@ -222,7 +204,6 @@ async function abrirPopupDetalhes(carta) {
         document.getElementById(`atk-${index + 1}`).innerText = valor;
     });
 }
-
 
     // Usar
     const btnUsar = document.getElementById('popup-detalhes-usar');
