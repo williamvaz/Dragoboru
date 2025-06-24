@@ -18,6 +18,7 @@ let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
 let ordenacao = 'id';
+let menuAberto = null;
 
 // ================== FUNÇÕES ==================
 
@@ -151,56 +152,48 @@ function carregarDeck() {
 
 let cartaSelecionada = null;
 
-function abrirPopupDetalhes(carta) {
-    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-    const desbloqueado = dados.quantidade > 0;
-
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-const statBoxes = document.querySelectorAll('.stat-box span');
-statBoxes[0].innerText = carta.CUSTO;
-statBoxes[1].innerText = carta.HP;
-statBoxes[2].innerText = carta.ATK;
-
-// ================== CARREGAR ATAQUES ==================
 async function carregarAtaques() {
     const response = await fetch('JSON/ataques.json');
     return await response.json();
 }
 
-async function abrirPopupDetalhes(carta) {
-    const ataques = await carregarAtaques();
+// ================== POP UP ==================
 
+async function abrirPopupDetalhes(carta) {
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+    const desbloqueado = dados.quantidade > 0;
+
     const atk = carta.ATK;
     const raridade = carta.Raridade;
     const nivel = dados.nivel;
     const custo = carta.CUSTO;
     const hp = carta.HP;
 
+    // Setar imagem e informações
     document.getElementById('popup-detalhes').style.display = 'flex';
     document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
     document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
     document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
 
-    document.getElementById('stat-hp').innerText = hp;
-    document.getElementById('stat-custo').innerText = custo;
-    document.getElementById('stat-nivel').innerText = nivel;
+    const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
+    statSpans[0].innerText = custo;
+    statSpans[1].innerText = hp;
+    statSpans[2].innerText = nivel;
+
+    // Ataques
+    const ataques = await carregarAtaques();
 
     ataques.forEach((atkObj, index) => {
         const mult = parseFloat(atkObj[raridade].replace(',', '.'));
         const valor = Math.round(atk * mult);
         document.getElementById(`atk-${index + 1}`).innerText = valor;
     });
-}
 
-    // Usar
+    // Controle do botão Usar/Remover
     const btnUsar = document.getElementById('popup-detalhes-usar');
     const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+
     if (desbloqueado) {
         btnUsar.disabled = false;
         btnUsar.classList.remove('disabled');
@@ -225,10 +218,10 @@ async function abrirPopupDetalhes(carta) {
         btnUsar.innerText = 'Usar';
     }
 
-    // Evoluir
+    // Controle do botão Evoluir
     const btnEvoluir = document.getElementById('popup-detalhes-evoluir');
-    const qtdNecessaria = calcularCartasNecessarias(dados.nivel, carta.Raridade);
-    const podeEvoluir = dados.quantidade >= qtdNecessaria && dados.nivel < 10;
+    const qtdNecessaria = calcularCartasNecessarias(nivel, carta.Raridade);
+    const podeEvoluir = dados.quantidade >= qtdNecessaria && nivel < 10;
 
     if (podeEvoluir) {
         btnEvoluir.disabled = false;
@@ -244,8 +237,14 @@ async function abrirPopupDetalhes(carta) {
         btnEvoluir.disabled = true;
         btnEvoluir.classList.add('disabled');
     }
-
 }
+
+// ================== CARREGAR ATAQUES ==================
+async function carregarAtaques() {
+    const response = await fetch('JSON/ataques.json');
+    return await response.json();
+}
+    
 
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
@@ -529,17 +528,6 @@ function fecharMenuCarta() {
 }
 
 // 🔥 Popup
-function abrirPopupDetalhes(carta) {
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
-statSpans[0].innerText = carta.CUSTO;
-statSpans[1].innerText = carta.HP;
-statSpans[2].innerText = carta.ATK;
-
-}
 
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
