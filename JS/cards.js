@@ -18,8 +18,6 @@ let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
 let ordenacao = 'id';
-let menuAberto = null;
-
 
 // ================== FUNÇÕES ==================
 
@@ -264,8 +262,6 @@ function gerarCards() {
     const container = document.getElementById('cards-grid');
     container.innerHTML = '';
 
-    const desbloqueado = dados.quantidade > 0;
-
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     let lista = personagens.slice();
 
@@ -464,6 +460,8 @@ function ordenarPor(tipo) {
 }
 
 // ================== INFORMAÇÕES ==================
+
+let menuAberto = null;
 
 function abrirMenuCarta(event, carta, desbloqueado) {
     fecharMenuCarta();
