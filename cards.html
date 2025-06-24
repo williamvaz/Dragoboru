@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -69,29 +68,28 @@
                 </div>
             </div>
 
-            <!-- 🔸 Filtro Saga -->
-            <div class="dropdown">
-                <button onclick="toggleDropdown('saga-dropdown')">Saga ▾</button>
-                <div id="saga-dropdown" class="dropdown-content">
-                    <div onclick="filtrarPorSaga('Todas')">Todas</div>
-                    <div onclick="filtrarPorSaga('DB')"><img src="Logos/DB.png" alt="DB" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBZ')"><img src="Logos/DBZ.png" alt="DBZ" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBGT')"><img src="Logos/DBGT.png" alt="DBGT" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBS')"><img src="Logos/DBS.png" alt="DBS" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBSA')"><img src="Logos/DBSA.png" alt="DBSA" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBX')"><img src="Logos/DBX.png" alt="DBX" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBF')"><img src="Logos/DBF.png" alt="DBF" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBD')"><img src="Logos/DBD.png" alt="DBD" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('DBAF')"><img src="Logos/DBAF.png" alt="DBAF" class="logo-saga"></div>
-                    <div onclick="filtrarPorSaga('SDBH')"><img src="Logos/SDBH.png" alt="SDBH" class="logo-saga"></div>
-                </div>
-            </div>
+<!-- 🔸 Filtro Saga -->
+<div class="dropdown">
+    <button onclick="toggleDropdown('saga-dropdown')">Saga ▾</button>
+    <div id="saga-dropdown" class="dropdown-content">
+        <div onclick="filtrarPorSaga('Todas')">Todas</div>
+        <div onclick="filtrarPorSaga('DB')"><img src="Logos/DB.png" alt="DB" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBZ')"><img src="Logos/DBZ.png" alt="DBZ" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBGT')"><img src="Logos/DBGT.png" alt="DBGT" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBS')"><img src="Logos/DBS.png" alt="DBS" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBSA')"><img src="Logos/DBSA.png" alt="DBSA" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBX')"><img src="Logos/DBX.png" alt="DBX" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBF')"><img src="Logos/DBF.png" alt="DBF" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBD')"><img src="Logos/DBD.png" alt="DBD" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('DBAF')"><img src="Logos/DBAF.png" alt="DBAF" class="logo-saga"></div>
+        <div onclick="filtrarPorSaga('SDBH')"><img src="Logos/SDBH.png" alt="SDBH" class="logo-saga"></div>
+    </div>
+</div>
 
             <!-- 🔸 Filtro Status -->
             <div class="dropdown">
                 <button onclick="toggleDropdown('status-dropdown')">Status ▾</button>
-                <!-- <div id="status-dropdown" class="dropdown-content"> -->
-                <div id="status-dropdown" class="dropdown-content-status">
+                <div id="status-dropdown" class="dropdown-content">
                     <div onclick="filtrarPorStatus('todos')">Todos</div>
                     <div onclick="filtrarPorStatus('desbloqueados')">Desbloqueados</div>
                     <div onclick="filtrarPorStatus('bloqueados')">Bloqueados</div>
@@ -121,7 +119,7 @@
         </div>
 
     </div> <!-- 🔥 Fecha container -->
-
+   
     <!-- BARRA INFERIOR -->
     <div class="bottom-bar">
         <button onclick="goTo('shop.html')">
@@ -156,60 +154,59 @@
     <script src="JS/salvarcards.js"></script>
 
     <!-- 🔥 POPUP DETALHES DA CARTA -->
-    <!-- POPUP DE DETALHES -->
-    <!-- 🔥 POPUP DE DETALHES -->
-    <div id="popup-detalhes" class="popup-detalhes" style="display: none;">
-        <div class="popup-detalhes-content">
-            <button class="fechar-btn" onclick="fecharPopupDetalhes()">X</button>
+<!-- POPUP DE DETALHES -->
+<!-- 🔥 POPUP DE DETALHES -->
+<div id="popup-detalhes" class="popup-detalhes" style="display: none;">
+    <div class="popup-detalhes-content">
+        <button class="fechar-btn" onclick="fecharPopupDetalhes()">X</button>
 
-            <!-- Esquerda (Imagem + Nome + Sobreposição) -->
-            <div class="popup-detalhes-esquerda">
-                <div class="popup-detalhes-img-container">
-                    <img id="popup-detalhes-img" class="popup-detalhes-img" src="" alt="Carta">
+        <!-- Esquerda (Imagem + Nome + Sobreposição) -->
+        <div class="popup-detalhes-esquerda">
+            <div class="popup-detalhes-img-container">
+                <img id="popup-detalhes-img" class="popup-detalhes-img" src="" alt="Carta">
                 </div>
-                <div class="popup-detalhes-nome" id="popup-detalhes-nome">Nome</div>
-            </div>
+            <div class="popup-detalhes-nome" id="popup-detalhes-nome">Nome</div>
+        </div>
 
-            <!-- Direita (Infos) -->
-            <div class="popup-detalhes-direita">
-                <img id="popup-detalhes-logo" class="popup-detalhes-logo" src="" alt="Logo">
+        <!-- Direita (Infos) -->
+        <div class="popup-detalhes-direita">
+            <img id="popup-detalhes-logo" class="popup-detalhes-logo" src="" alt="Logo">
 
-                <div class="stat-box">
-                    <img src="assets/CUSTO.png" alt="Custo">
-                    <span>6</span>
-                </div>
-                <div class="stat-box">
-                    <img src="assets/HP.png" alt="HP">
-                    <span>6</span>
-                </div>
-                <div class="stat-box">
-                    <img src="assets/DANO.png" alt="ATK">
-                    <span>6</span>
-                </div>
+<div class="stat-box">
+    <img src="assets/CUSTO.png" alt="Custo">
+    <span>6</span>
+</div>
+<div class="stat-box">
+    <img src="assets/HP.png" alt="HP">
+    <span>6</span>
+</div>
+<div class="stat-box">
+    <img src="assets/DANO.png" alt="ATK">
+    <span>6</span>
+</div>
 
-                <!-- ATAQUES -->
-                <div class="atk-table">
-                    <div class="atk-row">
-                        <div class="atk-cell" id="atk-1"></div>
-                        <div class="atk-cell" id="atk-2"></div>
-                        <div class="atk-cell" id="atk-3"></div>
-                    </div>
-                    <div class="atk-row">
-                        <div class="atk-cell" id="atk-4"></div>
-                        <div class="atk-cell" id="atk-5"></div>
-                        <div class="atk-cell" id="atk-6"></div>
-                    </div>
-                </div>
+<!-- ATAQUES -->
+<div class="atk-table">
+    <div class="atk-row">
+        <div class="atk-cell" id="atk-1"></div>
+        <div class="atk-cell" id="atk-2"></div>
+        <div class="atk-cell" id="atk-3"></div>
+    </div>
+    <div class="atk-row">
+        <div class="atk-cell" id="atk-4"></div>
+        <div class="atk-cell" id="atk-5"></div>
+        <div class="atk-cell" id="atk-6"></div>
+    </div>
+</div>
 
-                <div class="popup-detalhes-buttons">
-                    <button id="popup-detalhes-evoluir">Evoluir</button>
-                    <button id="popup-detalhes-usar">Usar</button>
-                </div>
+            <div class="popup-detalhes-buttons">
+                <button id="popup-detalhes-evoluir">Evoluir</button>
+                <button id="popup-detalhes-usar">Usar</button>
             </div>
         </div>
     </div>
+</div>
 
 
 </body>
-
 </html>
