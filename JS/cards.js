@@ -151,37 +151,18 @@ function carregarDeck() {
 
 let cartaSelecionada = null;
 
-function abrirPopupDetalhes(carta) {
-    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-    const desbloqueado = dados.quantidade > 0;
-
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-const statBoxes = document.querySelectorAll('.stat-box span');
-statBoxes[0].innerText = carta.CUSTO;
-statBoxes[1].innerText = carta.HP;
-statBoxes[2].innerText = carta.ATK;
-
-// ================== CARREGAR ATAQUES ==================
 async function carregarAtaques() {
     const response = await fetch('JSON/ataques.json');
     return await response.json();
 }
 
+// ================== POP UP ==================
+
 async function abrirPopupDetalhes(carta) {
-    const ataques = await carregarAtaques();
-
-ataques.forEach((atkObj, index) => {
-    const mult = parseFloat(atkObj[raridade].replace(',', '.'));
-    const valor = Math.round(atk * mult);
-    document.getElementById(`atk-${index + 1}`).innerText = valor;
-});
-
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+    const desbloqueado = dados.quantidade > 0;
+
     const atk = carta.ATK;
     const raridade = carta.Raridade;
     const nivel = dados.nivel;
@@ -193,18 +174,48 @@ ataques.forEach((atkObj, index) => {
     document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
     document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
 
-    document.getElementById('stat-hp').innerText = hp;
-    document.getElementById('stat-custo').innerText = custo;
-    document.getElementById('stat-nivel').innerText = nivel;
+    const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
+    statSpans[0].innerText = custo;
+    statSpans[1].innerText = hp;
+    statSpans[2].innerText = nivel;
+
+    // 🔥 CARREGA ATAQUES
+    const ataques = await carregarAtaques();
 
     ataques.forEach((atkObj, index) => {
         const mult = parseFloat(atkObj[raridade].replace(',', '.'));
         const valor = Math.round(atk * mult);
         document.getElementById(`atk-${index + 1}`).innerText = valor;
     });
+
+    // 🔥 SOBREPOSIÇÃO NA CARTA (SE TIVER NO POPUP)
+    const overlayImg = document.getElementById('popup-overlay-img');
+    const overlayText = document.getElementById('popup-overlay-text');
+
+    if (overlayImg && overlayText) {
+        if (ordenacao === 'atk') {
+            overlayImg.src = 'assets/DANO.png';
+            overlayText.innerText = buscarClasse(atk);
+        } else if (ordenacao === 'hp') {
+            overlayImg.src = 'assets/HP.png';
+            overlayText.innerText = buscarClasse(hp);
+        } else if (ordenacao === 'nivel') {
+            overlayImg.src = 'assets/NIVEL.png';
+            overlayText.innerText = `${nivel}`;
+        } else {
+            overlayImg.src = 'assets/CUSTO.png';
+            overlayText.innerText = custo;
+        }
+    }
 }
 
-    // Usar
+
+// ================== CARREGAR ATAQUES ==================
+async function carregarAtaques() {
+    const response = await fetch('JSON/ataques.json');
+    return await response.json();
+}
+        // Usar
     const btnUsar = document.getElementById('popup-detalhes-usar');
     const noDeck = deck.find(c => c["nº"] === carta["nº"]);
     if (desbloqueado) {
@@ -534,17 +545,6 @@ function fecharMenuCarta() {
 }
 
 // 🔥 Popup
-function abrirPopupDetalhes(carta) {
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
-statSpans[0].innerText = carta.CUSTO;
-statSpans[1].innerText = carta.HP;
-statSpans[2].innerText = carta.ATK;
-
-}
 
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
