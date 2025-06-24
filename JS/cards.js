@@ -503,6 +503,7 @@ menu.appendChild(btnDetalhes);
         btnAcao.classList.add('botao-desativado');
     }
 
+
     menu.appendChild(btnAcao);
 
     document.body.appendChild(menu);
