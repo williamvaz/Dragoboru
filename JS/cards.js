@@ -211,6 +211,7 @@ async function abrirPopupDetalhes(carta) {
                 }
             }
             gerarDeck();
+            salvarDeck();
             fecharPopupDetalhes();
         };
     } else {
@@ -488,6 +489,7 @@ menu.appendChild(btnDetalhes);
                 }
             }
             gerarDeck();
+            salvarDeck();
             fecharMenuCarta();
         };
     } else {
