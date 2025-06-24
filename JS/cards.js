@@ -384,10 +384,9 @@ function corPorRaridade(r) {
 // ================== CLASSE (HP, ATK) ==================
 
 function buscarClasse(valor) {
-    const classe = classeStats.find(c => valor >= c.min && valor <= c.max);
+    const classe = classeStats.find(c => valor >= c.ValorMin && valor <= c.ValorMax);
     return classe ? classe.Classe : '?';
 }
-
 
 // ================== DECK ==================
 
