@@ -520,9 +520,11 @@ function abrirPopupDetalhes(carta) {
     document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
     document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
     document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-    document.getElementById('popup-detalhes-custo').innerText = carta.CUSTO;
-    document.getElementById('popup-detalhes-hp').innerText = carta.HP;
-    document.getElementById('popup-detalhes-atk').innerText = carta.ATK;
+const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
+statSpans[0].innerText = carta.CUSTO;
+statSpans[1].innerText = carta.HP;
+statSpans[2].innerText = carta.ATK;
+
 }
 
 function fecharPopupDetalhes() {
