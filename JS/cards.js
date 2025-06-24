@@ -262,6 +262,8 @@ async function carregarAtaques() {
         btnEvoluir.classList.add('disabled');
     }
 
+}
+
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
 }
