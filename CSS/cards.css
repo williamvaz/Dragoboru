@@ -313,14 +313,6 @@ body {
     padding: 6px;
 }
 
-/* 🔥 Dropdown de saga (com logos) */
-#saga-dropdown {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
-    min-width: 160px;
-}
-
 #saga-dropdown div {
     background-color: rgba(0,0,0,0.6);
     border-radius: 6px;
