@@ -736,28 +736,32 @@ body {
 }
 
 /* 🔥 Ataques */
-.atk-table {
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
-    padding: 8px;
+.popup-detalhes-ataques {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    right: 10px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
 }
 
 .atk-row {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
 }
 
 .atk-cell {
-    flex: 1;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    padding: 6px;
-    border-radius: 6px;
-    text-align: center;
     font-weight: bold;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex: 1;
+    text-align: center;
+    margin: 0 2px;
 }
+
 
 

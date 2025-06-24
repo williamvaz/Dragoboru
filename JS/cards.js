@@ -151,36 +151,30 @@ function carregarDeck() {
 
 let cartaSelecionada = null;
 
-function abrirPopupDetalhes(carta) {
-    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-    const desbloqueado = dados.quantidade > 0;
-
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-const statBoxes = document.querySelectorAll('.stat-box span');
-statBoxes[0].innerText = carta.CUSTO;
-statBoxes[1].innerText = carta.HP;
-statBoxes[2].innerText = carta.ATK;
-
 // ================== CARREGAR ATAQUES ==================
 async function carregarAtaques() {
     const response = await fetch('JSON/ataques.json');
     return await response.json();
 }
 
+ 
 async function abrirPopupDetalhes(carta) {
     const ataques = await carregarAtaques();
 
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+    const desbloqueado = dados.quantidade > 0;
+
     const atk = carta.ATK;
     const raridade = carta.Raridade;
     const nivel = dados.nivel;
     const custo = carta.CUSTO;
     const hp = carta.HP;
+
+    const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
+    statSpans[0].innerText = carta.CUSTO;
+    statSpans[1].innerText = carta.HP;
+    statSpans[2].innerText = carta.ATK;
 
     document.getElementById('popup-detalhes').style.display = 'flex';
     document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
@@ -244,8 +238,6 @@ async function abrirPopupDetalhes(carta) {
         btnEvoluir.disabled = true;
         btnEvoluir.classList.add('disabled');
     }
-
-}
 
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
@@ -526,19 +518,6 @@ function fecharMenuCarta() {
         menuAberto.remove();
         menuAberto = null;
     }
-}
-
-// 🔥 Popup
-function abrirPopupDetalhes(carta) {
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
-statSpans[0].innerText = carta.CUSTO;
-statSpans[1].innerText = carta.HP;
-statSpans[2].innerText = carta.ATK;
-
 }
 
 function fecharPopupDetalhes() {
