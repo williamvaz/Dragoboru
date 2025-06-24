@@ -315,7 +315,7 @@ body {
 
 /* 🔥 Dropdown de saga (com logos) */
 #saga-dropdown {
-    display: none;
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
     min-width: 160px;
@@ -353,7 +353,7 @@ body {
 /* 🔥 Dropdowns comuns (Texto) */
 .dropdown-content:not(#saga-dropdown) {
     min-width: 160px;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 4px;
 }
@@ -363,7 +363,6 @@ body {
     padding: 6px 8px;
     cursor: pointer;
     border-radius: 6px;
-    display: none;
     background-color: rgba(0,0,0,0.6);
     font-weight: bold;
     transition: background-color 0.2s;
@@ -371,7 +370,6 @@ body {
 
 .dropdown-content:not(#saga-dropdown) div:hover {
     background-color: rgba(255,255,255,0.1);
-    display: none;
 }
 
 /* ===== ÁREA DE CARDS ===== */
@@ -758,4 +756,6 @@ body {
     font-weight: bold;
 }
 
-
+.dropdown-content {
+    display: none;
+}
