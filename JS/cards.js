@@ -174,12 +174,6 @@ async function carregarAtaques() {
 async function abrirPopupDetalhes(carta) {
     const ataques = await carregarAtaques();
 
-ataques.forEach((atkObj, index) => {
-    const mult = parseFloat(atkObj[raridade].replace(',', '.'));
-    const valor = Math.round(atk * mult);
-    document.getElementById(`atk-${index + 1}`).innerText = valor;
-});
-
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
     const atk = carta.ATK;
