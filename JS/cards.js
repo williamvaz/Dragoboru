@@ -251,6 +251,7 @@ function gerarCards() {
     container.innerHTML = '';
 
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
+    const desbloqueado = dados.quantidade > 0;
     let lista = personagens.slice();
 
     lista = lista.filter(carta => {
