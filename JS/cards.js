@@ -194,12 +194,9 @@ async function abrirPopupDetalhes(carta) {
 }
 
     // Usar
-const btnUsar = document.getElementById('popup-detalhes-usar');
-const noDeck = deck.find(c => c["nº"] === carta["nº"]);
-const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-const desbloqueado = dados.quantidade > 0;
-
+    const btnUsar = document.getElementById('popup-detalhes-usar');
+    const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+    const desbloqueado = dados.quantidade > 0;
     if (desbloqueado) {
         btnUsar.disabled = false;
         btnUsar.classList.remove('disabled');
