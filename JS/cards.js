@@ -257,20 +257,20 @@ function gerarCards() {
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
     let lista = personagens.slice();
 
-lista = lista.filter(carta => {
-    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-    const desbloqueado = dados.quantidade > 0;
+    lista = lista.filter(carta => {
+        const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
+        const desbloqueado = dados.quantidade > 0;
 
-    if (filtroRaridade !== 'Todas' && carta.Raridade !== filtroRaridade) return false;
-    if (filtroSaga !== 'Todas' && carta.Saga !== filtroSaga) return false;
-    if (
-        (filtroStatus === 'desbloqueados' && !desbloqueado) ||
-        (filtroStatus === 'bloqueados' && desbloqueado)
-    ) return false;
+        if (filtroRaridade !== 'Todas' && carta.Raridade !== filtroRaridade) return false;
+        if (filtroSaga !== 'Todas' && carta.Saga !== filtroSaga) return false;
+        if (
+    (filtroStatus === 'desbloqueados' && !desbloqueado) ||
+    (filtroStatus === 'bloqueados' && desbloqueado)
+) {
+    return false;
+}
 
-    return true; // ✅ Adicione esta linha!
-});
-
+    });
 
     lista.sort((a, b) => {
         const dadosA = cartasSalvas[a["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(a.Raridade) };
