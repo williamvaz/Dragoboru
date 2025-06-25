@@ -457,39 +457,31 @@ menu.appendChild(btnDetalhes);
 
 
     // 🔸 Botão Usar/Remover (mesmo bloqueado aparece, mas desativado)
-   const btnUsar = document.getElementById('popup-detalhes-usar');
-const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+    const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+    const btnAcao = document.createElement('button');
+    btnAcao.innerText = noDeck ? 'Remover' : 'Usar';
 
-if (desbloqueado) {
-    btnUsar.disabled = false;
-    btnUsar.classList.remove('disabled');
-    btnUsar.innerText = noDeck ? 'Tirar' : 'Usar';
-    btnUsar.style.backgroundColor = noDeck ? '#cc0000' : '#006400';
-
-    btnUsar.onclick = () => {
-        const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-        if (index !== -1) {
-            deck.splice(index, 1);
-        } else {
-            if (deck.length < 8) {
-                deck.push(carta);
+    if (desbloqueado) {
+        btnAcao.onclick = (e) => {
+            e.stopPropagation();
+            if (noDeck) {
+                const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+                deck.splice(index, 1);
             } else {
-                mostrarPopupAviso('Deck cheio!');
-                return;
+                if (deck.length < 8) {
+                    deck.push(carta);
+                } else {
+                    mostrarPopupAviso('Deck cheio!');
+                }
             }
-        }
-
-        salvarDeck();
-        gerarDeck();
-        abrirPopupDetalhes(carta); // 🔁 Reabre o popup para atualizar o botão
-    };
-} else {
-    btnUsar.disabled = true;
-    btnUsar.classList.add('disabled');
-    btnUsar.innerText = 'Usar';
-    btnUsar.style.backgroundColor = '#888';
-}
-
+            gerarDeck();
+            salvarDeck();
+            fecharMenuCarta();
+        };
+    } else {
+        btnAcao.disabled = true;
+        btnAcao.classList.add('botao-desativado');
+    }
 
 
     menu.appendChild(btnAcao);
