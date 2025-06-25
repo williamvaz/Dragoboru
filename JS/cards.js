@@ -172,12 +172,18 @@ async function abrirPopupDetalhes(carta) {
     const custo = carta.CUSTO;
     const hp = carta.HP;
 
+    const statBoxes = document.querySelectorAll('.stat-box span');
+statBoxes[0].innerText = carta.CUSTO;
+statBoxes[1].innerText = carta.HP;
+statBoxes[2].innerText = carta.ATK;
+
 const statSpans = document.querySelectorAll('.popup-detalhes-direita .stat-box span');
 if (statSpans.length >= 3) {
     statSpans[0].innerText = carta.CUSTO;
     statSpans[1].innerText = carta.HP;
     statSpans[2].innerText = carta.ATK;
 }
+
     document.getElementById('popup-detalhes').style.display = 'flex';
     document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
     document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
