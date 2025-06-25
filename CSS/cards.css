@@ -360,7 +360,6 @@ body {
 }
 
 .dropdown-content:not(#saga-dropdown) div {
-    display: none;
     color: white;
     padding: 6px 8px;
     cursor: pointer;
@@ -371,7 +370,6 @@ body {
 }
 
 .dropdown-content:not(#saga-dropdown) div:hover {
-    display: none;
     background-color: rgba(255,255,255,0.1);
 }
 
