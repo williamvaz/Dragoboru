@@ -237,15 +237,16 @@ async function abrirPopupDetalhes(carta) {
             gerarCards();
             fecharPopupDetalhes();
         };
-    } else {
+        } else {
         btnEvoluir.disabled = true;
         btnEvoluir.classList.add('disabled');
     }
+} // 👈 fecha a função abrirPopupDetalhes corretamente
 
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
 }
-}
+
 
 // ================== GERAR CARDS ==================
 
