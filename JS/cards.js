@@ -166,36 +166,34 @@ statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
     // Usar / Tirar
-const btnUsar = document.getElementById('popup-detalhes-usar');
-const noDeck = deck.find(c => c["nº"] === carta["nº"]);
-
-if (desbloqueado) {
-    btnUsar.disabled = false;
-    btnUsar.classList.remove('disabled');
-
-    if (noDeck) {
-        btnUsar.innerText = 'Tirar';
-        btnUsar.style.backgroundColor = '#cc0000'; // vermelho escuro
-    } else {
-        btnUsar.innerText = 'Usar';
-        btnUsar.style.backgroundColor = '#006400'; // verde escuro
-    }
+if (deck.find(c => c["nº"] === carta["nº"])) {
+    btnUsar.innerText = 'Tirar';
+    btnUsar.style.backgroundColor = '#cc0000';
+} else {
+    btnUsar.innerText = 'Usar';
+    btnUsar.style.backgroundColor = '#006400';
+}
 
     btnUsar.onclick = () => {
-        if (noDeck) {
-            const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-            deck.splice(index, 1);
+    const estaNoDeck = deck.find(c => c["nº"] === carta["nº"]);
+
+    if (estaNoDeck) {
+        const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+        deck.splice(index, 1);
+    } else {
+        if (deck.length < 8) {
+            deck.push(carta);
         } else {
-            if (deck.length < 8) {
-                deck.push(carta);
-            } else {
-                mostrarPopupAviso('Deck cheio!');
-                return;
-            }
+            mostrarPopupAviso('Deck cheio!');
+            return;
         }
-        gerarDeck();
-        fecharPopupDetalhes();
-    };
+    }
+
+    gerarDeck();
+    salvarDeck(); // 👈 importante pra manter persistência
+    fecharPopupDetalhes();
+};
+
 } else {
     btnUsar.disabled = true;
     btnUsar.classList.add('disabled');
