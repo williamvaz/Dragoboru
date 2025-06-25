@@ -166,41 +166,44 @@ statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
     // Usar / Tirar
-if (deck.find(c => c["nº"] === carta["nº"])) {
-    btnUsar.innerText = 'Tirar';
-    btnUsar.style.backgroundColor = '#cc0000';
-} else {
-
-    btnUsar.innerText = 'Usar';
-    btnUsar.style.backgroundColor = '#006400';
-}
-
-    btnUsar.onclick = () => {
-    const estaNoDeck = deck.find(c => c["nº"] === carta["nº"]);
-
-    if (estaNoDeck) {
-        const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-        deck.splice(index, 1);
+if (desbloqueado) {
+    if (deck.find(c => c["nº"] === carta["nº"])) {
+        btnUsar.innerText = 'Tirar';
+        btnUsar.style.backgroundColor = '#cc0000';
     } else {
-        if (deck.length < 8) {
-            deck.push(carta);
-        } else {
-            mostrarPopupAviso('Deck cheio!');
-            return;
-        }
+        btnUsar.innerText = 'Usar';
+        btnUsar.style.backgroundColor = '#006400';
     }
 
-    gerarDeck();
-    salvarDeck(); // 👈 importante pra manter persistência
-    fecharPopupDetalhes();
-};
+    btnUsar.disabled = false;
+    btnUsar.classList.remove('disabled');
 
+    btnUsar.onclick = () => {
+        const estaNoDeck = deck.find(c => c["nº"] === carta["nº"]);
+
+        if (estaNoDeck) {
+            const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+            deck.splice(index, 1);
+        } else {
+            if (deck.length < 8) {
+                deck.push(carta);
+            } else {
+                mostrarPopupAviso('Deck cheio!');
+                return;
+            }
+        }
+
+        gerarDeck();
+        salvarDeck(); // 👈 pra manter
+        fecharPopupDetalhes();
+    };
 } else {
     btnUsar.disabled = true;
     btnUsar.classList.add('disabled');
     btnUsar.innerText = 'Usar';
     btnUsar.style.backgroundColor = 'gray';
 }
+
 
 
     // Evoluir
