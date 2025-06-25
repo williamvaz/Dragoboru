@@ -196,6 +196,7 @@ async function abrirPopupDetalhes(carta) {
     // Usar
     const btnUsar = document.getElementById('popup-detalhes-usar');
     const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+    const desbloqueado = dados.quantidade > 0;
     if (desbloqueado) {
         btnUsar.disabled = false;
         btnUsar.classList.remove('disabled');
@@ -252,7 +253,6 @@ function gerarCards() {
     container.innerHTML = '';
 
     const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-    const desbloqueado = dados.quantidade > 0;
     let lista = personagens.slice();
 
     lista = lista.filter(carta => {
