@@ -165,39 +165,6 @@ statBoxes[0].innerText = carta.CUSTO;
 statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
-// ================== CARREGAR ATAQUES ==================
-async function carregarAtaques() {
-    const response = await fetch('JSON/ataques.json');
-    return await response.json();
-}
-
-async function abrirPopupDetalhes(carta) {
-    const ataques = await carregarAtaques();
-
-    const cartasSalvas = JSON.parse(localStorage.getItem('cartas')) || {};
-    const dados = cartasSalvas[carta["nº"]] || { quantidade: 0, nivel: nivelInicialPorRaridade(carta.Raridade) };
-    const atk = carta.ATK;
-    const raridade = carta.Raridade;
-    const nivel = dados.nivel;
-    const custo = carta.CUSTO;
-    const hp = carta.HP;
-
-    document.getElementById('popup-detalhes').style.display = 'flex';
-    document.getElementById('popup-detalhes-img').src = `Cards/Slide${carta["nº"]}.webp`;
-    document.getElementById('popup-detalhes-nome').innerText = carta["Nome Completo"];
-    document.getElementById('popup-detalhes-logo').src = `Logos/${carta.Saga}.png`;
-
-    document.getElementById('stat-hp').innerText = hp;
-    document.getElementById('stat-custo').innerText = custo;
-    document.getElementById('stat-nivel').innerText = nivel;
-
-    ataques.forEach((atkObj, index) => {
-        const mult = parseFloat(atkObj[raridade].replace(',', '.'));
-        const valor = Math.round(atk * mult);
-        document.getElementById(`atk-${index + 1}`).innerText = valor;
-    });
-}
-
     // Usar
     const btnUsar = document.getElementById('popup-detalhes-usar');
     const noDeck = deck.find(c => c["nº"] === carta["nº"]);
