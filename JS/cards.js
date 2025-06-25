@@ -165,33 +165,44 @@ statBoxes[0].innerText = carta.CUSTO;
 statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
-    // Usar
-    const btnUsar = document.getElementById('popup-detalhes-usar');
-    const noDeck = deck.find(c => c["nº"] === carta["nº"]);
-    if (desbloqueado) {
-        btnUsar.disabled = false;
-        btnUsar.classList.remove('disabled');
-        btnUsar.innerText = noDeck ? 'Remover' : 'Usar';
-        btnUsar.onclick = () => {
-            if (noDeck) {
-                const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-                deck.splice(index, 1);
-            } else {
-                if (deck.length < 8) {
-                    deck.push(carta);
-                } else {
-                    mostrarPopupAviso('Deck cheio!');
-                }
-            }
-            gerarDeck();
-            salvarDeck();
-            fecharPopupDetalhes();
-        };
+    // Usar / Tirar
+const btnUsar = document.getElementById('popup-detalhes-usar');
+const noDeck = deck.find(c => c["nº"] === carta["nº"]);
+
+if (desbloqueado) {
+    btnUsar.disabled = false;
+    btnUsar.classList.remove('disabled');
+
+    if (noDeck) {
+        btnUsar.innerText = 'Tirar';
+        btnUsar.style.backgroundColor = '#cc0000'; // vermelho escuro
     } else {
-        btnUsar.disabled = true;
-        btnUsar.classList.add('disabled');
         btnUsar.innerText = 'Usar';
+        btnUsar.style.backgroundColor = '#006400'; // verde escuro
     }
+
+    btnUsar.onclick = () => {
+        if (noDeck) {
+            const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+            deck.splice(index, 1);
+        } else {
+            if (deck.length < 8) {
+                deck.push(carta);
+            } else {
+                mostrarPopupAviso('Deck cheio!');
+                return;
+            }
+        }
+        gerarDeck();
+        fecharPopupDetalhes();
+    };
+} else {
+    btnUsar.disabled = true;
+    btnUsar.classList.add('disabled');
+    btnUsar.innerText = 'Usar';
+    btnUsar.style.backgroundColor = 'gray';
+}
+
 
     // Evoluir
     const btnEvoluir = document.getElementById('popup-detalhes-evoluir');
