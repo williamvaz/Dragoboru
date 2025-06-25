@@ -170,6 +170,7 @@ if (deck.find(c => c["nº"] === carta["nº"])) {
     btnUsar.innerText = 'Tirar';
     btnUsar.style.backgroundColor = '#cc0000';
 } else {
+
     btnUsar.innerText = 'Usar';
     btnUsar.style.backgroundColor = '#006400';
 }
