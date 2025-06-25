@@ -263,13 +263,9 @@ function gerarCards() {
 
         if (filtroRaridade !== 'Todas' && carta.Raridade !== filtroRaridade) return false;
         if (filtroSaga !== 'Todas' && carta.Saga !== filtroSaga) return false;
-        if (
-    (filtroStatus === 'desbloqueados' && !desbloqueado) ||
-    (filtroStatus === 'bloqueados' && desbloqueado)
-) {
-    return false;
-}
-
+        if (filtroStatus === 'desbloqueados' && !desbloqueado) return false;
+        if (filtroStatus === 'bloqueados' && desbloqueado) return false;
+        return true;
     });
 
     lista.sort((a, b) => {
