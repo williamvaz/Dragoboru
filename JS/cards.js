@@ -18,6 +18,7 @@ let filtroRaridade = 'Todas';
 let filtroSaga = 'Todas';
 let filtroStatus = 'todos';
 let ordenacao = 'id';
+let menuAberto = null;
 
 // ================== FUNÇÕES ==================
 
@@ -448,8 +449,6 @@ function ordenarPor(tipo) {
 }
 
 // ================== INFORMAÇÕES ==================
-
-let menuAberto = null;
 
 function abrirMenuCarta(event, carta, desbloqueado) {
     fecharMenuCarta();
