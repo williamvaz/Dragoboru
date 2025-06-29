@@ -165,6 +165,7 @@ statBoxes[0].innerText = carta.CUSTO;
 statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
+<<<<<<< HEAD
 // ====== Usar / Tirar ======
 const btnUsar = document.getElementById('popup-detalhes-usar');
 const noDeck = deck.find(c => c["nº"] === carta["nº"]);
@@ -187,20 +188,46 @@ if (desbloqueado) {
 
         if (index !== -1) {
             deck.splice(index, 1);
-        } else {
-            if (deck.length < 8) {
-                deck.push(carta);
-            } else {
-                mostrarPopupAviso('Deck cheio!');
-                return;
-            }
-        }
+=======
+    // Usar / Tirar
+if (deck.find(c => c["nº"] === carta["nº"])) {
+    btnUsar.innerText = 'Tirar';
+    btnUsar.style.backgroundColor = '#cc0000';
+} else {
 
+    btnUsar.innerText = 'Usar';
+    btnUsar.style.backgroundColor = '#006400';
+}
+
+    btnUsar.onclick = () => {
+    const estaNoDeck = deck.find(c => c["nº"] === carta["nº"]);
+
+    if (estaNoDeck) {
+        const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+        deck.splice(index, 1);
+    } else {
+        if (deck.length < 8) {
+            deck.push(carta);
+>>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
+        } else {
+            mostrarPopupAviso('Deck cheio!');
+            return;
+        }
+    }
+
+    gerarDeck();
+    salvarDeck(); // 👈 importante pra manter persistência
+    fecharPopupDetalhes();
+};
+
+<<<<<<< HEAD
         gerarDeck();
         salvarDeck();
         fecharPopupDetalhes();
     };
 
+=======
+>>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
 } else {
     btnUsar.disabled = true;
     btnUsar.classList.add('disabled');
@@ -208,6 +235,10 @@ if (desbloqueado) {
     btnUsar.style.backgroundColor = 'gray';
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
     // Evoluir
     const btnEvoluir = document.getElementById('popup-detalhes-evoluir');
     const qtdNecessaria = calcularCartasNecessarias(dados.nivel, carta.Raridade);
