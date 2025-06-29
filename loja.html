@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja - DB Fighters</title>
+  <link rel="stylesheet" href="CSS/loja.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="recurso xp"><img src="assets/XP.png"><span id="xp">0</span></div>
+    <div class="recurso coin"><img src="assets/Moeda.png"><span id="coin">0</span></div>
+    <div class="recurso gem"><img src="assets/Gemas.png"><span id="gem">0</span></div>
+  </div>
+
+  <h2 class="titulo">Loja</h2>
+
+  <div class="loja-container">
+    <div class="item-loja">
+      <img src="Loja/pacote1.png" alt="Pacote 1">
+      <h3>Pacote Básico</h3>
+      <p>Contém 3 cartas comuns</p>
+      <button class="comprar" data-preco="100" data-tipo="coin">Comprar - 100 <img src="assets/Moeda.png"></button>
+    </div>
+
+    <div class="item-loja">
+      <img src="Loja/pacote2.png" alt="Pacote 2">
+      <h3>Pacote Épico</h3>
+      <p>Contém 5 cartas raras ou superiores</p>
+      <button class="comprar" data-preco="3" data-tipo="gem">Comprar - 3 <img src="assets/Gemas.png"></button>
+    </div>
+
+    <div class="item-loja">
+      <img src="Loja/oferta.png" alt="Oferta">
+      <h3>Oferta Diária</h3>
+      <p>1 carta aleatória de graça!</p>
+      <button class="comprar gratis" data-preco="0" data-tipo="free">Resgatar</button>
+    </div>
+  </div>
+
+  <div class="menu-inferior">
+    <button onclick="goTo('cards.html')"><img src="assets/icon_cards.png"></button>
+    <button onclick="goTo('deck.html')"><img src="assets/icon_goku.png"></button>
+    <button onclick="goTo('arenas.html')"><img src="assets/icon_arena.png"></button>
+    <button onclick="goTo('colecao.html')"><img src="assets/icon_colecao.png"></button>
+    <button class="ativo"><img src="assets/icon_loja.png"></button>
+  </div>
+
+  <script src="JS/loja.js"></script>
+</body>
+</html>

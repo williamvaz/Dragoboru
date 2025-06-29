@@ -1,0 +1,116 @@
+/* CSS - loja.css */
+
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  background: #a63d2f url('../assets/bg.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #000000aa;
+  padding: 10px;
+}
+
+.recurso {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.recurso img {
+  width: 24px;
+  height: 24px;
+}
+
+.titulo {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.loja-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.item-loja {
+  background: #000000aa;
+  border: 3px solid #fff;
+  border-radius: 15px;
+  padding: 15px;
+  width: 90%;
+  max-width: 300px;
+}
+
+.item-loja img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.item-loja h3 {
+  margin: 10px 0 5px;
+  font-size: 14px;
+}
+
+.item-loja p {
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+button.comprar {
+  background: orange;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+button.comprar img {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+button.comprar.desativado {
+  background: #555;
+  cursor: default;
+  opacity: 0.7;
+}
+
+.menu-inferior {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #000000dd;
+  padding: 10px 0;
+  z-index: 999;
+}
+
+.menu-inferior button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.menu-inferior img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0.8);
+}
+
+.menu-inferior .ativo img {
+  filter: brightness(1.2);
+}
