@@ -165,30 +165,6 @@ statBoxes[0].innerText = carta.CUSTO;
 statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
-<<<<<<< HEAD
-// ====== Usar / Tirar ======
-const btnUsar = document.getElementById('popup-detalhes-usar');
-const noDeck = deck.find(c => c["nº"] === carta["nº"]);
-
-if (desbloqueado) {
-    btnUsar.disabled = false;
-    btnUsar.classList.remove('disabled');
-
-    // Estilo e texto inicial
-    if (noDeck) {
-        btnUsar.innerText = 'Tirar';
-        btnUsar.style.backgroundColor = '#cc0000'; // vermelho escuro
-    } else {
-        btnUsar.innerText = 'Usar';
-        btnUsar.style.backgroundColor = '#006400'; // verde escuro
-    }
-
-    btnUsar.onclick = () => {
-        const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-
-        if (index !== -1) {
-            deck.splice(index, 1);
-=======
     // Usar / Tirar
 if (deck.find(c => c["nº"] === carta["nº"])) {
     btnUsar.innerText = 'Tirar';
@@ -208,7 +184,6 @@ if (deck.find(c => c["nº"] === carta["nº"])) {
     } else {
         if (deck.length < 8) {
             deck.push(carta);
->>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
         } else {
             mostrarPopupAviso('Deck cheio!');
             return;
