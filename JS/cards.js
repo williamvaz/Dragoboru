@@ -166,6 +166,7 @@ statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
     // Usar / Tirar
+<<<<<<< HEAD
 const btnUsar = document.getElementById('popup-detalhes-usar');
 const noDeck = deck.find(c => c["nº"] === carta["nº"]);
 
@@ -185,17 +186,43 @@ if (desbloqueado) {
         if (noDeck) {
             const index = deck.findIndex(c => c["nº"] === carta["nº"]);
             deck.splice(index, 1);
+=======
+if (deck.find(c => c["nº"] === carta["nº"])) {
+    btnUsar.innerText = 'Tirar';
+    btnUsar.style.backgroundColor = '#cc0000';
+} else {
+
+    btnUsar.innerText = 'Usar';
+    btnUsar.style.backgroundColor = '#006400';
+}
+
+    btnUsar.onclick = () => {
+    const estaNoDeck = deck.find(c => c["nº"] === carta["nº"]);
+
+    if (estaNoDeck) {
+        const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+        deck.splice(index, 1);
+    } else {
+        if (deck.length < 8) {
+            deck.push(carta);
+>>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
         } else {
-            if (deck.length < 8) {
-                deck.push(carta);
-            } else {
-                mostrarPopupAviso('Deck cheio!');
-                return;
-            }
+            mostrarPopupAviso('Deck cheio!');
+            return;
         }
+<<<<<<< HEAD
         gerarDeck();
         fecharPopupDetalhes();
     };
+=======
+    }
+
+    gerarDeck();
+    salvarDeck(); // 👈 importante pra manter persistência
+    fecharPopupDetalhes();
+};
+
+>>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
 } else {
     btnUsar.disabled = true;
     btnUsar.classList.add('disabled');
