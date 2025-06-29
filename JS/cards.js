@@ -165,8 +165,7 @@ statBoxes[0].innerText = carta.CUSTO;
 statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
-    // Usar / Tirar
-<<<<<<< HEAD
+// ====== Usar / Tirar ======
 const btnUsar = document.getElementById('popup-detalhes-usar');
 const noDeck = deck.find(c => c["nº"] === carta["nº"]);
 
@@ -174,6 +173,7 @@ if (desbloqueado) {
     btnUsar.disabled = false;
     btnUsar.classList.remove('disabled');
 
+    // Estilo e texto inicial
     if (noDeck) {
         btnUsar.innerText = 'Tirar';
         btnUsar.style.backgroundColor = '#cc0000'; // vermelho escuro
@@ -183,53 +183,30 @@ if (desbloqueado) {
     }
 
     btnUsar.onclick = () => {
-        if (noDeck) {
-            const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-            deck.splice(index, 1);
-=======
-if (deck.find(c => c["nº"] === carta["nº"])) {
-    btnUsar.innerText = 'Tirar';
-    btnUsar.style.backgroundColor = '#cc0000';
-} else {
-
-    btnUsar.innerText = 'Usar';
-    btnUsar.style.backgroundColor = '#006400';
-}
-
-    btnUsar.onclick = () => {
-    const estaNoDeck = deck.find(c => c["nº"] === carta["nº"]);
-
-    if (estaNoDeck) {
         const index = deck.findIndex(c => c["nº"] === carta["nº"]);
-        deck.splice(index, 1);
-    } else {
-        if (deck.length < 8) {
-            deck.push(carta);
->>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
+
+        if (index !== -1) {
+            deck.splice(index, 1);
         } else {
-            mostrarPopupAviso('Deck cheio!');
-            return;
+            if (deck.length < 8) {
+                deck.push(carta);
+            } else {
+                mostrarPopupAviso('Deck cheio!');
+                return;
+            }
         }
-<<<<<<< HEAD
+
         gerarDeck();
+        salvarDeck();
         fecharPopupDetalhes();
     };
-=======
-    }
 
-    gerarDeck();
-    salvarDeck(); // 👈 importante pra manter persistência
-    fecharPopupDetalhes();
-};
-
->>>>>>> parent of bdf93e7 (Arrumando adicionar no deck.js)
 } else {
     btnUsar.disabled = true;
     btnUsar.classList.add('disabled');
     btnUsar.innerText = 'Usar';
     btnUsar.style.backgroundColor = 'gray';
 }
-
 
     // Evoluir
     const btnEvoluir = document.getElementById('popup-detalhes-evoluir');
@@ -256,6 +233,7 @@ if (deck.find(c => c["nº"] === carta["nº"])) {
 function fecharPopupDetalhes() {
     document.getElementById('popup-detalhes').style.display = 'none';
 }
+
 
 // ================== GERAR CARDS ==================
 
