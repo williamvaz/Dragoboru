@@ -165,7 +165,7 @@ statBoxes[0].innerText = carta.CUSTO;
 statBoxes[1].innerText = carta.HP;
 statBoxes[2].innerText = carta.ATK;
 
-    // Usar / Tirar
+// ====== Usar / Tirar ======
 const btnUsar = document.getElementById('popup-detalhes-usar');
 const noDeck = deck.find(c => c["nº"] === carta["nº"]);
 
@@ -173,6 +173,7 @@ if (desbloqueado) {
     btnUsar.disabled = false;
     btnUsar.classList.remove('disabled');
 
+    // Estilo e texto inicial
     if (noDeck) {
         btnUsar.innerText = 'Tirar';
         btnUsar.style.backgroundColor = '#cc0000'; // vermelho escuro
@@ -182,8 +183,9 @@ if (desbloqueado) {
     }
 
     btnUsar.onclick = () => {
-        if (noDeck) {
-            const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+        const index = deck.findIndex(c => c["nº"] === carta["nº"]);
+
+        if (index !== -1) {
             deck.splice(index, 1);
         } else {
             if (deck.length < 8) {
@@ -193,16 +195,18 @@ if (desbloqueado) {
                 return;
             }
         }
+
         gerarDeck();
+        salvarDeck();
         fecharPopupDetalhes();
     };
+
 } else {
     btnUsar.disabled = true;
     btnUsar.classList.add('disabled');
     btnUsar.innerText = 'Usar';
     btnUsar.style.backgroundColor = 'gray';
 }
-
 
     // Evoluir
     const btnEvoluir = document.getElementById('popup-detalhes-evoluir');
